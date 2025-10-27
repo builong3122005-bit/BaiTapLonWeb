@@ -1,10 +1,11 @@
-﻿using btl.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Web;
 using System.Web.UI;
+using btl.Models;
 
 namespace btl.Page
 {
@@ -12,7 +13,7 @@ namespace btl.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            HandleActions(); 
+            HandleActions();
 
             if (!IsPostBack)
             {
@@ -50,6 +51,12 @@ namespace btl.Page
         {
             string action = Request.QueryString["action"];
             string idStr = Request.QueryString["id"];
+
+            if (action == "logout")
+            {
+                Logout();
+                return; // Dừng xử lý sau khi đăng xuất
+            }
 
             if (string.IsNullOrEmpty(action) || string.IsNullOrEmpty(idStr)) return;
 
@@ -606,6 +613,25 @@ namespace btl.Page
                         "</tr>";
             }
             return html;
+        }
+
+        /// <summary>
+        /// Xử lý đăng xuất
+        /// </summary>
+        private void Logout()
+        {
+            // Xóa cookie "User" bằng cách cho nó hết hạn
+            if (Request.Cookies["User"] != null)
+            {
+                HttpCookie userCookie = new HttpCookie("User");
+                userCookie.Expires = DateTime.Now.AddDays(-1d); // Đặt thời gian hết hạn về quá khứ
+                Response.Cookies.Add(userCookie);
+            }
+
+            // Chuyển hướng về trang Login
+            // Bạn cũng có thể đổi "Login.aspx" thành "Index.aspx" nếu muốn
+            Response.Redirect("Login.aspx", false);
+            Context.ApplicationInstance.CompleteRequest();
         }
 
     }

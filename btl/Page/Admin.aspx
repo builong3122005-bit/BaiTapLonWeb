@@ -50,7 +50,9 @@
                             <a href="#" class="nav-link" data-page="customers"><span class="nav-icon">👥</span><span>Tài khoản khách hàng</span></a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link" id="logout-btn"><span class="nav-icon">🚪</span><span>Đăng xuất</span></a>
+                            <a href="#" class="nav-link" onclick="window.location.href='Admin.aspx?action=logout'; return false;">
+                                <span class="nav-icon">🚪</span><span>Đăng xuất</span>
+                            </a>
                         </li>
                     </ul>
                 </nav>
