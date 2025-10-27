@@ -1,0 +1,80 @@
+/* css/home.css */
+.hero {
+  position: relative;
+  height: 80vh;
+  background-image: url("https://images.unsplash.com/photo-1483985988355-763728e1935b?q=80&w=2070&auto=format&fit=crop");
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: var(--white);
+  text-align: center;
+  padding: 0 20px;
+  overflow: hidden;
+}
+
+/* Lớp phủ */
+.hero::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* Lớp phủ mờ ban đầu */
+  background-color: rgba(0, 0, 0, 0.3);
+  /* Thêm transition cho background-color để hiệu ứng mượt mà */
+  transition: background-color 0.4s ease;
+  z-index: 1;
+}
+
+/* Khi hover, làm lớp phủ đậm hơn */
+.hero:hover::before {
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+/* Đảm bảo nội dung chữ và nút bấm luôn nằm trên lớp phủ */
+.hero h1,
+.hero p,
+.hero .btn {
+  position: relative;
+  z-index: 2;
+}
+
+.hero h1 {
+  font-size: 3.5rem;
+  margin-bottom: 20px;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+  max-width: 600px;
+}
+
+.promo-banner {
+  background-color: var(--secondary-color);
+  padding: 80px 0;
+  text-align: center;
+}
+
+.promo-banner h2 {
+  font-size: 2.5rem;
+  color: var(--primary-color);
+  margin-bottom: 20px;
+}
+
+.promo-banner p {
+  margin-bottom: 30px;
+}
+
+@media (max-width: 768px) {
+  .hero h1 {
+    font-size: 2.5rem;
+  }
+  .hero p {
+    font-size: 1rem;
+  }
+}

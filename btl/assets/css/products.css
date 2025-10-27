@@ -1,0 +1,132 @@
+/* css/products.css */
+
+/* =================================
+   PRODUCT CARD STYLES
+   ================================= */
+.product-card {
+  border: 1px solid #eee;
+  text-align: center;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+  overflow: hidden;
+  height: 100%;
+}
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+.product-image {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  transition: transform 0.4s ease, opacity 0.4s ease; /* Thêm transition cho opacity */
+}
+.product-card:hover .product-image {
+  transform: scale(1.05);
+  opacity: 0.8; /* Giảm độ trong suốt khi hover */
+}
+.product-info {
+  padding: 20px;
+}
+.product-name {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: #333;
+}
+.product-price {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--accent-color);
+}
+
+/* =================================
+   FILTER SIDEBAR STYLES
+   ================================= */
+.filter-widget {
+  border: 1px solid #eee;
+  padding: 20px;
+  margin-bottom: 30px;
+}
+.widget-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  position: relative;
+  padding-bottom: 10px;
+}
+.widget-title::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 30px;
+  height: 2px;
+  background-color: var(--accent-color);
+}
+.widget-list li {
+  margin-bottom: 2px;
+}
+.widget-list a {
+  display: block;
+  padding: 8px 12px;
+  color: #555;
+  transition: background-color 0.3s, color 0.3s, padding-left 0.3s;
+  border-radius: 4px;
+}
+.widget-list a:hover {
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+  padding-left: 18px;
+}
+.widget-list a.active {
+  background-color: var(--accent-color);
+  color: var(--white);
+  font-weight: 600;
+}
+.widget-list a.active:hover {
+  padding-left: 12px;
+}
+
+/* =================================
+   PAGINATION STYLES
+   ================================= */
+.pagination-wrapper {
+  margin-top: 50px;
+}
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  list-style: none;
+  padding: 0;
+}
+.page-item {
+  margin: 0 4px;
+}
+.page-link {
+  display: block;
+  padding: 10px 16px;
+  color: var(--primary-color);
+  background-color: var(--white);
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  transition: background-color 0.3s, color 0.3s;
+  font-weight: 600;
+}
+.page-link:hover {
+  background-color: var(--secondary-color);
+  border-color: #ccc;
+}
+.page-item.active .page-link {
+  background-color: var(--accent-color);
+  color: var(--white);
+  border-color: var(--accent-color);
+  cursor: default;
+}
+.page-item.disabled .page-link {
+  color: #aaa;
+  background-color: #f9f9f9;
+  border-color: #ddd;
+  cursor: not-allowed;
+}

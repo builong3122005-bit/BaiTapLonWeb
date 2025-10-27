@@ -1,0 +1,297 @@
+/* css/common.css */
+:root {
+  --primary-color: #1a1a1a;
+  --secondary-color: #f5f5f5;
+  --accent-color: #e67e22;
+  --text-color: #333;
+  --white: #fff;
+  --font-family: "Montserrat", sans-serif;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+body {
+  font-family: var(--font-family);
+  color: var(--text-color);
+  background-color: var(--white);
+  line-height: 1.6;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+.section-title {
+  text-align: center;
+  margin-bottom: 40px;
+  text-transform: uppercase;
+  font-size: 2rem;
+  letter-spacing: 1px;
+}
+
+.btn {
+  display: inline-block;
+  padding: 12px 28px;
+  background-color: var(--accent-color);
+  color: var(--white);
+  text-transform: uppercase;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  border-radius: 4px;
+}
+
+.btn:hover {
+  background-color: #d35400;
+}
+
+.page-header {
+  background-color: var(--secondary-color);
+  padding: 40px 0;
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.page-header h1 {
+  font-size: 2.5rem;
+  color: var(--primary-color);
+}
+
+/* =================== HEADER =================== */
+.header {
+  padding: 20px 0;
+  border-bottom: 1px solid var(--secondary-color);
+  position: sticky;
+  top: 0;
+  background-color: var(--white);
+  z-index: 1000;
+}
+
+.header-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 1.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.nav-list {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+}
+
+.nav-link {
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  transition: color 0.3s ease;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: var(--accent-color);
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  font-size: 1.2rem;
+}
+
+.header-actions a {
+  transition: color 0.3s ease;
+}
+
+.header-actions a:hover,
+.header-actions a.active {
+  color: var(--accent-color);
+}
+
+.menu-toggle {
+  display: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+/* =================== FOOTER =================== */
+.footer {
+  background-color: var(--primary-color);
+  color: var(--white);
+  padding: 60px 0 20px;
+  margin-top: 80px;
+}
+
+.footer-column h4 {
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  margin-bottom: 25px;
+  font-weight: 600;
+  position: relative;
+  padding-bottom: 10px;
+}
+
+.footer-column h4::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 40px;
+  height: 2px;
+  background-color: var(--accent-color);
+}
+
+.footer-column p,
+.footer-column li {
+  color: #ccc;
+  font-size: 0.95rem;
+  margin-bottom: 12px;
+}
+
+.footer-column a {
+  color: #ccc;
+  transition: color 0.3s ease, padding-left 0.3s ease;
+}
+
+.footer-column a:hover {
+  color: var(--accent-color);
+  padding-left: 5px;
+}
+
+.social-icons {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.social-icons a {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: var(--white);
+  font-size: 1rem;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.social-icons a .icon-img {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+  display: block;
+  /* Chuyển icon thành màu trắng */
+  filter: brightness(0) invert(1);
+  /* Đảm bảo icon hiển thị */
+  visibility: visible;
+  opacity: 1;
+}
+
+.social-icons a:hover {
+  background-color: var(--accent-color);
+  transform: translateY(-3px);
+}
+
+.footer-column i.me-2 {
+  margin-right: 0.8rem;
+  width: 20px;
+  text-align: center;
+}
+
+.footer-bottom {
+  text-align: center;
+  padding-top: 20px;
+  margin-top: 40px;
+  border-top: 1px solid #444;
+  font-size: 0.9rem;
+  color: #ccc;
+}
+
+/* ==== Header icons fix ==== */
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px; /* khoảng cách giữa các icon */
+}
+
+.header-actions .icon-img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.header-actions .icon-img:hover {
+  transform: scale(1.1);
+}
+
+/* icon delete */
+.delete {
+  width: 24px;
+}
+/* =================== RESPONSIVE =================== */
+@media (max-width: 991px) {
+  .nav-list {
+    position: fixed;
+    top: 81px;
+    left: -100%;
+    width: 100%;
+    height: calc(100vh - 81px);
+    background-color: var(--white);
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    transition: left 0.5s ease;
+  }
+
+  .nav-list.active {
+    left: 0;
+  }
+
+  .nav-link {
+    font-size: 1.5rem;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+}
+
+@media (max-width: 767px) {
+  .page-header h1 {
+    font-size: 2rem;
+  }
+
+  .section-title {
+    font-size: 1.5rem;
+  }
+
+  .logo {
+    font-size: 1.5rem;
+  }
+}

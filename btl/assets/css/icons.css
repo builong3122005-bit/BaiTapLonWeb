@@ -1,0 +1,146 @@
+/* css/icons.css - Complete Icon Image Styles */
+
+/* =================== BASE ICON STYLES =================== */
+.icon-img {
+  display: inline-block;
+  vertical-align: middle;
+  object-fit: contain;
+}
+
+/* =================== HEADER ICONS =================== */
+.header-actions .icon-img {
+  width: 20px;
+  height: 20px;
+  transition: opacity 0.3s ease;
+}
+
+.header-actions a:hover .icon-img,
+.header-actions a.active .icon-img {
+  opacity: 0.7;
+}
+
+/* Menu toggle icon */
+.menu-toggle .icon-img {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+}
+
+/* =================== FOOTER ICONS =================== */
+/* Social media icons */
+.social-icons .icon-img {
+  width: 16px;
+  height: 16px;
+  filter: brightness(0) invert(1); /* Convert to white */
+}
+
+.social-icons a:hover .icon-img {
+  filter: brightness(0) invert(1) opacity(0.8);
+}
+
+/* Contact info icons in footer */
+.footer-column .icon-img.me-2 {
+  width: 14px;
+  height: 14px;
+  margin-right: 0.8rem;
+  filter: brightness(0) invert(1); /* Convert to white */
+}
+
+/* =================== CONTACT PAGE ICONS =================== */
+.contact-details .icon-img {
+  width: 20px;
+  height: 20px;
+  margin-right: 15px;
+  vertical-align: middle;
+}
+
+.contact-details li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+/* =================== ABOUT PAGE ICONS =================== */
+.feature-icon .icon-img {
+  width: 60px;
+  height: 60px;
+  display: block;
+  margin: 0 auto 20px;
+}
+
+/* =================== CART PAGE ICONS =================== */
+/* Remove/trash icon in cart */
+.remove-item-btn .icon-img {
+  width: 18px;
+  height: 18px;
+}
+
+/* Arrow icon in button */
+.btn .icon-img.me-2 {
+  width: 16px;
+  height: 16px;
+  margin-right: 0.5rem;
+  vertical-align: middle;
+}
+
+/* =================== CHECKOUT PAGE ICONS =================== */
+/* Payment method icons */
+.payment-option .icon-img {
+  width: 24px;
+  height: 24px;
+  margin-right: 10px;
+  flex-shrink: 0;
+}
+
+.payment-icon-img {
+  width: 28px;
+  height: 28px;
+  margin-right: 10px;
+  object-fit: contain;
+}
+
+/* =================== AUTH PAGES ICONS =================== */
+.back-to-home .icon-img {
+  width: 20px;
+  height: 20px;
+  transition: opacity 0.3s ease;
+}
+
+.back-to-home:hover .icon-img {
+  opacity: 0.7;
+}
+
+/* =================== UTILITY CLASSES =================== */
+.me-2 {
+  margin-right: 0.8rem;
+}
+
+/* =================== RESPONSIVE =================== */
+@media (max-width: 767px) {
+  .header-actions .icon-img {
+    width: 18px;
+    height: 18px;
+  }
+
+  .feature-icon .icon-img {
+    width: 48px;
+    height: 48px;
+  }
+
+  .contact-details .icon-img {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+@media (max-width: 575px) {
+  .header-actions .icon-img {
+    width: 16px;
+    height: 16px;
+  }
+
+  .menu-toggle .icon-img {
+    width: 20px;
+    height: 20px;
+  }
+}

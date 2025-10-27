@@ -1,0 +1,208 @@
+.static-content p {
+  margin-bottom: 20px;
+  line-height: 1.8;
+}
+.static-content h2 {
+  margin: 40px 0 20px;
+}
+.blog-post-card {
+  border: 1px solid #eee;
+  height: 100%;
+  margin-bottom: 30px;
+}
+.blog-post-card img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+}
+.blog-post-content {
+  padding: 20px;
+}
+/* =================================
+   ABOUT PAGE STYLES
+   ================================= */
+.about-section {
+  padding: 60px 0;
+}
+
+.about-section.bg-light-gray {
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  padding: 60px 30px;
+}
+
+.section-subtitle {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 50px;
+  color: var(--primary-color);
+  text-transform: uppercase;
+}
+
+.static-content .section-subtitle {
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+.img-fluid.rounded.shadow {
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Feature Box for Core Values */
+.feature-box {
+  padding: 30px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.feature-box:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+.feature-icon {
+  font-size: 3rem;
+  color: var(--accent-color);
+  margin-bottom: 20px;
+}
+.feature-title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+/* Team Member Styles */
+.team-member {
+  margin-bottom: 30px;
+}
+.team-photo {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 0 auto 20px;
+  border: 5px solid var(--white);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+.team-name {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+.team-role {
+  color: #777;
+  font-style: italic;
+}
+/* css/static-page.css */
+
+.static-content p {
+  margin-bottom: 20px;
+  line-height: 1.8;
+}
+.static-content h2 {
+  margin: 40px 0 20px;
+}
+.blog-post-card {
+  border: 1px solid #eee;
+  margin-bottom: 30px;
+  /* Thêm hiệu ứng chuyển động */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Thêm hiệu ứng hover */
+.blog-post-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.blog-post-card img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+}
+.blog-post-content {
+  padding: 20px;
+}
+
+/* Nút đọc thêm */
+.btn-read-more {
+  color: var(--accent-color);
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.btn-read-more:hover {
+  text-decoration: underline;
+}
+
+/* =================================
+   ABOUT PAGE STYLES
+   ================================= */
+.about-section {
+  padding: 60px 0;
+}
+
+.about-section.bg-light-gray {
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  padding: 60px 30px;
+}
+
+.section-subtitle {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 50px;
+  color: var(--primary-color);
+  text-transform: uppercase;
+}
+
+.static-content .section-subtitle {
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+.img-fluid.rounded.shadow {
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Feature Box for Core Values */
+.feature-box {
+  padding: 30px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.feature-box:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+.feature-icon {
+  font-size: 3rem;
+  color: var(--accent-color);
+  margin-bottom: 20px;
+}
+.feature-title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+/* Team Member Styles */
+.team-member {
+  margin-bottom: 30px;
+}
+.team-photo {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 0 auto 20px;
+  border: 5px solid var(--white);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+.team-name {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+.team-role {
+  color: #777;
+  font-style: italic;
+}

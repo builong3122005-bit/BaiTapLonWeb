@@ -1,0 +1,72 @@
+/* css/forms.css */
+
+.form-wrapper {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 40px;
+  border: 1px solid #eee;
+  border-radius: 5px;
+}
+
+.form-wrapper h1 {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-family: var(--font-family);
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: var(--accent-color);
+}
+
+.form-group textarea {
+  resize: vertical;
+}
+
+.form-wrapper .btn {
+  width: 100%;
+}
+
+.form-footer {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.form-footer a {
+  color: var(--accent-color);
+  font-weight: bold;
+}
+
+.form-footer a:hover {
+  text-decoration: underline;
+}
+
+/* Contact Form Specific */
+.contact-form-wrapper {
+  max-width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}

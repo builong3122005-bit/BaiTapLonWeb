@@ -1,0 +1,149 @@
+/* css/checkout.css */
+
+.form-section-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 30px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #eee;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.form-col {
+  width: 100%;
+}
+
+.checkout-form {
+  border: 1px solid #eee;
+  padding: 30px;
+  border-radius: 5px;
+}
+
+.order-summary {
+  border: 1px solid #eee;
+  padding: 30px;
+  border-radius: 5px;
+  background-color: var(--secondary-color);
+  position: sticky;
+  top: 120px;
+}
+
+.order-items {
+  margin-bottom: 20px;
+}
+
+.order-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.order-item:last-child {
+  border-bottom: none;
+}
+
+.item-name {
+  color: #555;
+}
+
+.item-price {
+  font-weight: 600;
+}
+
+.summary-line {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+  padding: 5px 0;
+}
+
+.summary-line.total {
+  font-weight: 700;
+  font-size: 1.3rem;
+  margin-top: 10px;
+  padding-top: 20px;
+  border-top: 2px solid #ddd;
+}
+
+.payment-methods {
+  margin: 30px 0;
+  border-top: 1px solid #ddd;
+  padding-top: 20px;
+}
+
+.payment-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+.payment-option {
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin-bottom: 10px;
+  background-color: #fff;
+  transition: border-color 0.3s;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.payment-option:hover {
+  border-color: #aaa;
+}
+
+.payment-option label {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  cursor: pointer;
+  font-weight: 600;
+  color: #333;
+  margin: 0;
+}
+
+.payment-option input[type="radio"] {
+  margin-right: 15px;
+  accent-color: var(--accent-color);
+}
+
+.payment-icon-img {
+  width: 28px;
+  height: 28px;
+  margin-right: 10px;
+  object-fit: contain;
+}
+
+.payment-icon-fa {
+  font-size: 1.5rem;
+  margin-right: 10px;
+  width: 30px;
+  text-align: center;
+  color: #555;
+}
+
+.btn-order {
+  width: 100%;
+  padding: 15px;
+  font-size: 1.1rem;
+}
+
+/* Responsive */
+@media (max-width: 991px) {
+  .checkout-section {
+    margin-bottom: 30px;
+  }
+}
+
+@media (max-width: 767px) {
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+}

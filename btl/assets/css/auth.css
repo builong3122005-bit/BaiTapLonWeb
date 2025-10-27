@@ -1,0 +1,121 @@
+.back-to-home img {
+    width: 20px;
+    height: 20px;
+    display: block;
+    margin-top: 8px;
+    margin-left: 8px;
+}
+
+@media (max-width: 575px) {
+    .back-to-home img {
+        width: 16px;
+        height: 16px;
+        margin-top: 4px;
+        margin-left: 4px;
+    }
+}
+/* css/auth.css */
+
+html,
+body {
+    height: 100%;
+}
+
+    /* Class để căn giữa trang */
+    body.form-page > * {
+        height: 100vh;
+        margin-bottom: 100px;
+        background-color: #f5f5f5;
+    }
+
+form.auth-page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.auth-container {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Đặt form-wrapper làm gốc định vị cho nút back */
+.auth-page .form-wrapper {
+    position: relative;
+}
+
+/* Nút quay về trang chủ */
+.back-to-home {
+    position: absolute;
+    top: 40px;
+    left: 40px;
+    font-size: 1.5rem;
+    color: #555;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    z-index: 10;
+}
+
+/* Make login title smaller and lighter */
+.form-wrapper h1 {
+    font-size: 1.3rem;
+    color: #888;
+    font-weight: 500;
+    margin-bottom: 24px;
+}
+
+.field-error {
+    display: block;
+    margin-top: 6px;
+    font-size: 0.9rem;
+    color: #e02424;
+}
+
+input.invalid {
+    border-color: #e02424 !important;
+    outline: none;
+}
+/* Fix icon size and position for login arrow */
+.back-to-home .icon-img {
+    width: 20px !important;
+    height: 20px !important;
+    display: block;
+    margin: 0;
+}
+
+@media (max-width: 575px) {
+    .back-to-home .icon-img {
+        width: 16px !important;
+        height: 16px !important;
+    }
+}
+
+.back-to-home:hover {
+    color: var(--accent-color);
+}
+
+@media (max-width: 575px) {
+    .back-to-home {
+        top: 20px;
+        left: 20px;
+        font-size: 1.2rem;
+    }
+}
+
+.form-group input[type="password"] {
+    letter-spacing: 0.08em;
+}
+
+.form-group input {
+    margin-bottom: 2px;
+}
+
+@media (max-width: 575px) {
+    .form-group input {
+        font-size: 0.95rem;
+        padding: 8px 8px;
+    }
+}
+}
