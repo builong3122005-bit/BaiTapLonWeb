@@ -1,11 +1,9 @@
-﻿using btl.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
+using btl.Models;
 
 namespace btl.Page
 {
@@ -57,10 +55,10 @@ namespace btl.Page
                                                    ? HttpUtility.HtmlEncode(fullDescription.Substring(0, 150)) + "..."
                                                    : HttpUtility.HtmlEncode(fullDescription);
 
-                litLongDescription.Text = FormatDescription(fullDescription); 
+                litLongDescription.Text = fullDescription;
 
 
-                if (!IsPostBack) 
+                if (!IsPostBack)
                 {
                     LoadRelatedProducts(products, currentProduct.CategoryId, currentProduct.Id);
                     this.Title = $"{currentProduct.Name} - Shop Thời Trang ABC";
@@ -83,7 +81,7 @@ namespace btl.Page
             int.TryParse(quantity.Text, out quantityToAdd);
             if (quantityToAdd < 1) quantityToAdd = 1;
 
-            string selectedSize = rblSize.SelectedValue; 
+            string selectedSize = rblSize.SelectedValue;
 
             CartItem existingItem = cart.FirstOrDefault(item => item.ProductId == currentProduct.Id && item.Size == selectedSize);
 
@@ -119,11 +117,11 @@ namespace btl.Page
             litErrorMessage.Text = $"<div class='alert alert-danger'>{message} <a href='Products.aspx'>Quay lại danh sách</a></div>";
         }
 
-        private string FormatDescription(string description)
-        {
-            if (string.IsNullOrEmpty(description)) return "<p>Chưa có mô tả chi tiết.</p>";
-            return "<p>" + HttpUtility.HtmlEncode(description).Replace("\n", "<br />") + "</p>";
-        }
+        //private string FormatDescription(string description)
+        //{
+        //    if (string.IsNullOrEmpty(description)) return "<p>Chưa có mô tả chi tiết.</p>";
+        //    return "<p>" + HttpUtility.HtmlEncode(description).Replace("\n", "<br />") + "</p>";
+        //}
 
 
         private void LoadRelatedProducts(List<Product> allProducts, int currentCategoryId, int currentProductId)

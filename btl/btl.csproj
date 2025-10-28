@@ -69,6 +69,7 @@
   <ItemGroup>
     <Content Include="assets\css\admin.css" />
     <Content Include="assets\css\profile.css" />
+    <Content Include="assets\img\AoThun1.jpg" />
     <Content Include="assets\js\admin.js" />
     <Content Include="assets\js\login.js" />
     <Content Include="assets\js\profile.js" />
@@ -146,21 +147,12 @@
     <Content Include="Page\Products.aspx" />
     <Content Include="Page\Profile.aspx" />
     <Content Include="Page\SignUp.aspx" />
-    <Content Include="Uploads\Products\1.jpg" />
-    <Content Include="Uploads\Products\11.jpg" />
-    <Content Include="Uploads\Products\12.jpg" />
-    <Content Include="Uploads\Products\14.jpg" />
-    <Content Include="Uploads\Products\15.jpg" />
-    <Content Include="Uploads\Products\16.jpg" />
-    <Content Include="Uploads\Products\2.jpg" />
-    <Content Include="Uploads\Products\3.jpg" />
-    <Content Include="Uploads\Products\4.jpg" />
-    <Content Include="Uploads\Products\5.jpg" />
-    <Content Include="Uploads\Products\6.jpg" />
-    <Content Include="Uploads\Products\7.jpg" />
-    <Content Include="Uploads\Products\8.jpg" />
-    <Content Include="Uploads\Products\9.jpg" />
-    <Content Include="Uploads\Products\default.jpg" />
+    <Content Include="Uploads\Products\AoThun1.jpg" />
+    <Content Include="Uploads\Products\AoThun2.jpg" />
+    <Content Include="Uploads\Products\AoThun3.jpg" />
+    <Content Include="Uploads\Products\AoThun4.jpg" />
+    <Content Include="Uploads\Products\AoThun5.jpg" />
+    <Content Include="Uploads\Products\AoThun6.jpeg" />
     <Content Include="UserControl\Header.ascx" />
     <Content Include="UserControl\Footer.ascx" />
     <Content Include="Web.config" />

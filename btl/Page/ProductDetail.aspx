@@ -154,14 +154,16 @@
             cursor: pointer;
             border-radius: 4px;
         }
-         .size-options input[type=radio] {
-             display: none;
-         }
-         .size-options label.active { 
-             background-color: #333;
-             color: white;
-             border-color: #333;
-         }
+
+        .size-options input[type=radio] {
+            display: none;
+        }
+
+        .size-options label.active {
+            background-color: #333;
+            color: white;
+            border-color: #333;
+        }
     </style>
 </body>
 </html>
