@@ -166,7 +166,7 @@
             border-color: #333;
         }
     </style>
-    <script src="/assets/js/admin.js"></script>
+    <script src="~/assets/js/admin.js"></script>
 
 </body>
 </html>

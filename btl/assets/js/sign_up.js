@@ -111,7 +111,7 @@ passwordInput.addEventListener("input", () => {
     }
 });
 // Khi gõ ở ô xác nhận -> kiểm tra khớp ngay
-//confirmInput?.addEventListener("input", kiemTraXacNhanMatKhau);
+confirmInput?.addEventListener("input", kiemTraXacNhanMatKhau);
 
 form?.addEventListener("submit", (e) => {
     if (globalError) globalError.innerText = "";

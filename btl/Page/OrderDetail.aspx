@@ -280,12 +280,18 @@
                         </div>
 
                         <div class="order-total-summary">
-                            <div><span>Tạm tính:</span>
-                                <asp:Literal ID="litSubtotal" runat="server">0đ</asp:Literal></div>
-                            <div><span>Phí vận chuyển:</span>
-                                <asp:Literal ID="litShippingFee" runat="server">0đ</asp:Literal></div>
-                            <div class="total"><span>Tổng cộng:</span>
-                                <asp:Literal ID="litTotal" runat="server">0đ</asp:Literal></div>
+                            <div>
+                                <span>Tạm tính:</span>
+                                <asp:Literal ID="litSubtotal" runat="server">0đ</asp:Literal>
+                            </div>
+                            <div>
+                                <span>Phí vận chuyển:</span>
+                                <asp:Literal ID="litShippingFee" runat="server">0đ</asp:Literal>
+                            </div>
+                            <div class="total">
+                                <span>Tổng cộng:</span>
+                                <asp:Literal ID="litTotal" runat="server">0đ</asp:Literal>
+                            </div>
                         </div>
 
                         <div class="action-buttons">
@@ -297,7 +303,7 @@
         </main>
         <uc:Footer runat="server" ID="footer1" />
     </form>
-    <script src="/assets/js/admin.js"></script>
+    <script src="~/assets/js/admin.js"></script>
 
 </body>
 </html>
