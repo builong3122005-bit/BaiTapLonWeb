@@ -32,7 +32,7 @@
                     <p>
                         Khám phá những thiết kế mới nhất, mang đậm phong cách và sự thoải mái.
                     </p>
-                    <a href="products.html" class="btn">Mua Ngay</a>
+                    <a href="./products.aspx" class="btn">Mua Ngay</a>
                 </section>
 
                 <section class="py-5">
@@ -48,7 +48,7 @@
                     <div class="container">
                         <h2>Giảm giá cuối mùa</h2>
                         <p>Ưu đãi lên đến 50% cho các sản phẩm chọn lọc. Đừng bỏ lỡ!</p>
-                        <a href="products.html" class="btn">Xem Ngay</a>
+                        <a href="./products.aspx" class="btn">Xem Ngay</a>
                     </div>
                 </section>
             </main>

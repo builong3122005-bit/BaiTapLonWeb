@@ -67,7 +67,7 @@
                                 <div class="feature-box">
                                     <div class="feature-icon">
                                         <img
-                                            src="./img/icon-chatluong.png"
+                                            src="../assets/img/icon-chatluong.png"
                                             alt="Chất lượng"
                                             class="icon-img" />
                                     </div>
@@ -82,7 +82,7 @@
                                 <div class="feature-box">
                                     <div class="feature-icon">
                                         <img
-                                            src="./img/icon-sangtao.png"
+                                            src="../assets/img/icon-sangtao.png"
                                             alt="Sáng tạo"
                                             class="icon-img" />
                                     </div>
@@ -97,7 +97,7 @@
                                 <div class="feature-box">
                                     <div class="feature-icon">
                                         <img
-                                            src="./img/icon-khachhang.png"
+                                            src="../assets/img/icon-khachhang.png"
                                             alt="Khách hàng"
                                             class="icon-img" />
                                     </div>
@@ -118,7 +118,7 @@
                             <div class="grid-item">
                                 <div class="team-member">
                                     <img
-                                        src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=500"
+                                        src="../assets/img/Avt1.jpg"
                                         alt="Team member 1"
                                         class="team-photo" />
                                     <h4 class="team-name">Nguyễn Văn A</h4>
@@ -128,7 +128,7 @@
                             <div class="grid-item">
                                 <div class="team-member">
                                     <img
-                                        src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=500"
+                                        src="../assets/img/Avt2.jpg"
                                         alt="Team member 2"
                                         class="team-photo" />
                                     <h4 class="team-name">Trần Thị B</h4>
@@ -138,7 +138,7 @@
                             <div class="grid-item">
                                 <div class="team-member">
                                     <img
-                                        src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=500"
+                                        src="../assets/img/Avt3.jpg"
                                         alt="Team member 3"
                                         class="team-photo" />
                                     <h4 class="team-name">Lê Văn C</h4>

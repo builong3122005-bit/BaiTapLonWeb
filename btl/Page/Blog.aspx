@@ -30,8 +30,8 @@
                 <div class="grid grid-3">
                     <div class="grid-item">
                         <div class="blog-post-card">
-                            <a href="./blog-details.html">
-                                <img src="./img/blog-1.jpg" alt="Xu hướng thời trang 2025" />
+                            <a href="./BlogDetail.aspx">
+                                <img src="../assets/img/blog-1.jpg" alt="Xu hướng thời trang 2025" />
                             </a>
                             <div class="blog-post-content">
                                 <h3><a href="#">Xu Hướng Thời Trang Nổi Bật 2025</a></h3>
@@ -39,14 +39,14 @@
                                     Cùng khám phá những xu hướng thời trang sẽ lên ngôi trong năm
                   tới, từ màu sắc, kiểu dáng đến chất liệu.
                                 </p>
-                                <a href="./blog-details.html" class="btn-read-more">Đọc thêm</a>
+                                <a href="./BlogDetail.aspx" class="btn-read-more">Đọc thêm</a>
                             </div>
                         </div>
                     </div>
                     <div class="grid-item">
                         <div class="blog-post-card">
-                            <a href="./blog-details.html">
-                                <img src="./img/blog-2.jpg" alt="Cách phối đồ" />
+                            <a href="./BlogDetail.aspx">
+                                <img src="../assets/img/blog-2.jpg" alt="Cách phối đồ" />
                             </a>
                             <div class="blog-post-content">
                                 <h3><a href="#">5 Cách Phối Đồ Sành Điệu Với Áo Thun</a></h3>
@@ -54,14 +54,14 @@
                                     Áo thun là một item không thể thiếu. Học ngay 5 cách phối đồ
                   để biến chiếc áo thun đơn giản trở nên thật phong cách.
                                 </p>
-                                <a href="./blog-details.html" class="btn-read-more">Đọc thêm</a>
+                                <a href="./BlogDetail.aspx" class="btn-read-more">Đọc thêm</a>
                             </div>
                         </div>
                     </div>
                     <div class="grid-item">
                         <div class="blog-post-card">
-                            <a href="./blog-details.html">
-                                <img src="./img/blog-3.webp" alt="Bảo quản quần áo" />
+                            <a href="./BlogDetail.aspx">
+                                <img src="../assets/img/blog-3.jpg" alt="Bảo quản quần áo" />
                             </a>
                             <div class="blog-post-content">
                                 <h3><a href="#">Mẹo Bảo Quản Quần Áo Bền Đẹp Như Mới</a></h3>
@@ -69,7 +69,7 @@
                                     Những mẹo nhỏ giúp bạn giữ gìn quần áo yêu thích luôn mới và
                   bền màu theo thời gian.
                                 </p>
-                                <a href="./blog-details.html" class="btn-read-more">Đọc thêm</a>
+                                <a href="./BlogDetail.aspx" class="btn-read-more">Đọc thêm</a>
                             </div>
                         </div>
                     </div>

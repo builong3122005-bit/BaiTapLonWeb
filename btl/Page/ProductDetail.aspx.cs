@@ -50,12 +50,12 @@ namespace btl.Page
                 productName.InnerText = currentProduct.Name;
                 productPrice.InnerText = $"{currentProduct.Price:N0}đ";
 
-                string fullDescription = currentProduct.Description ?? "Chưa có mô tả cho sản phẩm này.";
-                productShortDescription.InnerText = fullDescription.Length > 150
-                                                   ? HttpUtility.HtmlEncode(fullDescription.Substring(0, 150)) + "..."
-                                                   : HttpUtility.HtmlEncode(fullDescription);
-
-                litLongDescription.Text = fullDescription;
+                //string fullDescription = currentProduct.Description ?? "Chưa có mô tả cho sản phẩm này.";
+                //productShortDescription.InnerText = fullDescription.Length > 150
+                //                                   ? HttpUtility.HtmlEncode(fullDescription.Substring(0, 150)) + "..."
+                //                                   : HttpUtility.HtmlEncode(fullDescription);
+                productShortDescription.InnerText = currentProduct.ShortDescription ?? ""; // Lấy trực tiếp từ trường mới
+                litLongDescription.Text = currentProduct.Description ?? "Chưa có mô tả.";
 
 
                 if (!IsPostBack)

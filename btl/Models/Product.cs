@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace btl.Models
+﻿namespace btl.Models
 {
     public class Product
     {
@@ -14,6 +9,7 @@ namespace btl.Models
         public int Stock { get; set; }
         public string ImageUrl { get; set; } // Đường dẫn lưu ảnh
         public string Description { get; set; }
+        public string ShortDescription { get; set; } // Mô tả ngắn (văn bản thuần túy)
         public Product()
         {
         }

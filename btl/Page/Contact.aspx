@@ -40,19 +40,19 @@
                             </p>
                             <ul class="contact-details">
                                 <li>
-                                    <img src="./img/address.png" alt="" class="icon-img" />
+                                    <img src="../assets/img/address.png" alt="" class="icon-img" />
                                     <span>19 Lê Thánh Tông, Hoàn Kiếm, Hà Nội</span>
                                 </li>
                                 <li>
-                                    <img src="./img/phone.png" alt="" class="icon-img" />
+                                    <img src="../assets/img/phone.png" alt="" class="icon-img" />
                                     <span>(024) 39 876 543</span>
                                 </li>
                                 <li>
-                                    <img src="./img/email.png" alt="" class="icon-img" />
+                                    <img src="../assets/img/email.png" alt="" class="icon-img" />
                                     <span>support@abcshop.com</span>
                                 </li>
                                 <li>
-                                    <img src="./img/time.png" alt="" class="icon-img" />
+                                    <img src="../assets/img/time.png" alt="" class="icon-img" />
                                     <span>Giờ làm việc: 08:30 - 21:30 (T2 - CN)</span>
                                 </li>
                             </ul>

@@ -25,7 +25,7 @@
                         <p class="blog-meta">Đăng ngày: 21/10/2025 | Tác giả: ABC Shop</p>
                     </div>
                     <div class="blog-details-image">
-                        <img src="./img/blog-1.jpg" alt="Xu hướng thời trang 2025" />
+                        <img src="../assets/img/blog-1.jpg" alt="Xu hướng thời trang 2025" />
                     </div>
                     <div class="blog-details-content">
                         <p>

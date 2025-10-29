@@ -40,9 +40,9 @@
                                         <div class="cart-item">
                                             <div class="cart-item-layout">
                                                 <div class="cart-item-image-wrapper">
-  <img src='<%# ResolveUrl( Eval("ImageUrl") != null ? Eval("ImageUrl").ToString() : "~/Uploads/Products/default.jpg" ) %>'
-          alt='<%# Eval("ProductName") %>'
-          class="cart-item-image" />
+                                                    <img src='<%# ResolveUrl( Eval("ImageUrl") != null ? Eval("ImageUrl").ToString() : "~/Uploads/Products/default.jpg" ) %>'
+                                                        alt='<%# Eval("ProductName") %>'
+                                                        class="cart-item-image" />
                                                 </div>
                                                 <div class="cart-item-details">
                                                     <h3 class="cart-item-name"><%# Eval("ProductName") %></h3>
@@ -71,9 +71,9 @@
                                     </ItemTemplate>
                                 </asp:Repeater>
                             </div>
-                             <div class="cart-actions">
+                            <div class="cart-actions">
                                 <asp:HyperLink NavigateUrl="~/Page/Products.aspx" CssClass="btn btn-outline" runat="server">
-                                     <img src='<%= ResolveUrl("~/assets/icons/arrow-left.png") %>' alt="" class="icon-img me-2" />Tiếp tục mua sắm
+                                     <img src='<%= ResolveUrl("~/assets/img/icon-cart.png") %>' alt="" class="icon-img me-2" />Tiếp tục mua sắm
                                 </asp:HyperLink>
                             </div>
                         </div>

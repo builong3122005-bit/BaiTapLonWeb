@@ -69,7 +69,9 @@
   <ItemGroup>
     <Content Include="assets\css\admin.css" />
     <Content Include="assets\css\profile.css" />
-    <Content Include="assets\img\AoThun1.jpg" />
+    <Content Include="assets\img\Avt1.jpg" />
+    <Content Include="assets\img\Avt2.jpg" />
+    <Content Include="assets\img\Avt3.jpg" />
     <Content Include="assets\js\admin.js" />
     <Content Include="assets\js\login.js" />
     <Content Include="assets\js\profile.js" />
@@ -147,12 +149,24 @@
     <Content Include="Page\Products.aspx" />
     <Content Include="Page\Profile.aspx" />
     <Content Include="Page\SignUp.aspx" />
+    <Content Include="Uploads\Products\AoSoMi1.jpg" />
+    <Content Include="Uploads\Products\AoSoMi2.jpg" />
+    <Content Include="Uploads\Products\AoSoMi3.jpg" />
+    <Content Include="Uploads\Products\AoSoMi4.jpg" />
+    <Content Include="Uploads\Products\AoSoMi5.jpg" />
+    <Content Include="Uploads\Products\AoSoMi6.jpg" />
     <Content Include="Uploads\Products\AoThun1.jpg" />
     <Content Include="Uploads\Products\AoThun2.jpg" />
     <Content Include="Uploads\Products\AoThun3.jpg" />
     <Content Include="Uploads\Products\AoThun4.jpg" />
     <Content Include="Uploads\Products\AoThun5.jpg" />
     <Content Include="Uploads\Products\AoThun6.jpeg" />
+    <Content Include="Uploads\Products\QuanJeans1.jpg" />
+    <Content Include="Uploads\Products\QuanJeans2.jpg" />
+    <Content Include="Uploads\Products\QuanJeans3.jpg" />
+    <Content Include="Uploads\Products\QuanJeans4.jpg" />
+    <Content Include="Uploads\Products\QuanJeans5.jpg" />
+    <Content Include="Uploads\Products\QuanJeans6.jpg" />
     <Content Include="UserControl\Header.ascx" />
     <Content Include="UserControl\Footer.ascx" />
     <Content Include="Web.config" />
@@ -289,8 +303,15 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="assets\img\bgi.jpg" />
     <None Include="packages.config" />
-    <Content Include="assets\img\blog-3.webp" />
+    <Content Include="assets\img\blog-3.jpg" />
+    <Content Include="Uploads\Products\AoKhoac1.jpg" />
+    <Content Include="Uploads\Products\AoKhoac2.jpg" />
+    <Content Include="Uploads\Products\AoKhoac3.jpg" />
+    <Content Include="Uploads\Products\AoKhoac4.jpg" />
+    <Content Include="Uploads\Products\AoKhoac5.jpg" />
+    <Content Include="Uploads\Products\AoKhoac6.jpg" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
