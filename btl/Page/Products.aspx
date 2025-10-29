@@ -23,37 +23,43 @@
             background-color: #007bff;
             color: white;
             border: none;
-            border-radius: 50%; 
-            width: 35px; 
-            height: 35px; 
-            font-size: 18px; 
-            line-height: 35px; 
+            border-radius: 50%;
+            width: 35px;
+            height: 35px;
+            font-size: 18px;
+            line-height: 35px;
             text-align: center;
             cursor: pointer;
             opacity: 0;
             transition: opacity 0.3s ease, background-color 0.3s ease;
-            padding: 0; 
-            display: flex; 
-            align-items: center; 
+            padding: 0;
+            display: flex;
+            align-items: center;
             justify-content: center;
         }
+
         .product-card:hover .add-to-cart-btn {
-            opacity: 1; 
+            opacity: 1;
         }
+
         .product-card .add-to-cart-btn:hover {
             background-color: #0056b3;
         }
-         .product-card .add-to-cart-btn img {
-             width: 16px; 
-             height: 16px;
-             vertical-align: middle;
-         }
+
+        .product-card .add-to-cart-btn img {
+            width: 16px;
+            height: 16px;
+            vertical-align: middle;
+        }
+
         .product-card {
             position: relative;
         }
-        .product-card .product-info {
-            padding-bottom: 50px;
-        }
+
+            .product-card .product-info {
+                padding-bottom: 50px;
+            }
+
         .add-cart-message-popup {
             position: fixed;
             bottom: 20px;
@@ -67,10 +73,10 @@
             opacity: 0;
             transition: opacity 0.5s ease;
         }
-        .add-cart-message-popup.show {
-            opacity: 1;
-        }
 
+            .add-cart-message-popup.show {
+                opacity: 1;
+            }
     </style>
 </head>
 <body>
@@ -119,7 +125,7 @@
                                                 <div class='product-card'>
                                                     <a href='<%# ResolveUrl( Eval("Id", "ProductDetail.aspx?id={0}") ) %>'>
                                                         <img src='<%# ResolveUrl( Eval("ImageUrl") != null ? Eval("ImageUrl").ToString() : "~/assets/img/placeholder.png" ) %>'
-                                                             alt='<%# Eval("Name") %>' class='product-image' />
+                                                            alt='<%# Eval("Name") %>' class='product-image' />
                                                     </a>
                                                     <div class='product-info'>
                                                         <h3 class='product-name'><a href='<%# ResolveUrl( Eval("Id", "ProductDetail.aspx?id={0}") ) %>'><%# Eval("Name") %></a></h3>
@@ -146,16 +152,18 @@
                             </section>
                         </div>
                     </ContentTemplate>
-                     <Triggers>
-                         <asp:AsyncPostBackTrigger ControlID="cblCategories" EventName="SelectedIndexChanged" />
-                         <asp:AsyncPostBackTrigger ControlID="cblPriceRanges" EventName="SelectedIndexChanged" />
-                         <asp:AsyncPostBackTrigger ControlID="rptProductList" EventName="ItemCommand" />
-                     </Triggers>
+                    <Triggers>
+                        <asp:AsyncPostBackTrigger ControlID="cblCategories" EventName="SelectedIndexChanged" />
+                        <asp:AsyncPostBackTrigger ControlID="cblPriceRanges" EventName="SelectedIndexChanged" />
+                        <asp:AsyncPostBackTrigger ControlID="rptProductList" EventName="ItemCommand" />
+                    </Triggers>
                 </asp:UpdatePanel>
                 <div id="addCartMessagePopup" class="add-cart-message-popup" role="alert">Sản phẩm đã được thêm vào giỏ!</div>
             </div>
         </main>
         <uc:Footer runat="server" ID="footer1" />
     </form>
+    <script src="/assets/js/admin.js"></script>
+
 </body>
 </html>

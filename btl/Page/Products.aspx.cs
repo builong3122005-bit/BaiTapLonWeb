@@ -1,270 +1,281 @@
-﻿using btl.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using btl.Models;
 
 namespace btl.Page
 {
     public partial class Products : System.Web.UI.Page
     {
-        private const int PageSize = 6;
+        // Các control này được liên kết tự động qua tệp .designer.cs,
+        // không cần khai báo lại ở đây.
 
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                PopulateFilters();
-                LoadProducts();
+                // Load danh mục vào CheckBoxList khi trang tải lần đầu
+                LoadCategories();
+                // Load sản phẩm ban đầu (áp dụng bộ lọc mặc định nếu có)
+                ApplyFilters();
             }
         }
 
-        private void PopulateFilters()
+        // Hàm Load danh mục vào CheckBoxList
+        private void LoadCategories()
         {
-            List<Category> categories = (List<Category>)Application["categories"];
-            if (categories != null && cblCategories.Items.Count == 0)
+            List<Category> categories = Application["categories"] as List<Category>;
+            // Kiểm tra control tồn tại trước khi sử dụng
+            if (categories != null && cblCategories != null)
             {
-                foreach (var category in categories)
-                {
-                    cblCategories.Items.Add(new ListItem(Server.HtmlEncode(category.Name), category.Id.ToString()));
-                }
-            }
-
-            if (!IsPostBack)
-            {
-                if (!string.IsNullOrEmpty(Request.QueryString["cat"]))
-                {
-                    string[] selectedCats = Request.QueryString["cat"].Split(',');
-                    foreach (ListItem item in cblCategories.Items)
-                    {
-                        item.Selected = selectedCats.Contains(item.Value);
-                    }
-                }
-                if (!string.IsNullOrEmpty(Request.QueryString["price"]))
-                {
-                    string[] selectedPrices = Request.QueryString["price"].Split(',');
-                    foreach (ListItem item in cblPriceRanges.Items)
-                    {
-                        item.Selected = selectedPrices.Contains(item.Value);
-                    }
-                }
+                cblCategories.DataSource = categories;
+                cblCategories.DataTextField = "Name"; // Thuộc tính Name của Category để hiển thị
+                cblCategories.DataValueField = "Id";   // Thuộc tính Id của Category làm giá trị
+                cblCategories.DataBind();
             }
         }
 
+
+        // Phương thức này sẽ được gọi khi bất kỳ bộ lọc nào thay đổi (do AutoPostBack="true")
         protected void Filters_SelectedIndexChanged(object sender, EventArgs e)
         {
-            LoadProducts(true);
+            ApplyFilters();
         }
 
-        protected void rptProductList_ItemCommand(object source, RepeaterCommandEventArgs e)
+        // Hàm lọc và hiển thị sản phẩm
+        private void ApplyFilters()
         {
-            if (e.CommandName == "AddToCart")
-            {
-                if (int.TryParse(e.CommandArgument.ToString(), out int productId))
-                {
-                    AddProductToCart(productId);
-                }
-            }
-        }
-
-        private void AddProductToCart(int productId)
-        {
-            List<Product> allProducts = (List<Product>)Application["products"];
-            Product productToAdd = allProducts?.FirstOrDefault(p => p.Id == productId);
-
-            if (productToAdd == null) return;
-
-            List<CartItem> cart = Session["Cart"] as List<CartItem> ?? new List<CartItem>();
-
-            int quantityToAdd = 1;
-            string selectedSize = "M"; // Default size for quick add
-
-            CartItem existingItem = cart.FirstOrDefault(item => item.ProductId == productToAdd.Id && item.Size == selectedSize);
-
-            if (existingItem != null)
-            {
-                existingItem.Quantity += quantityToAdd;
-            }
-            else
-            {
-                cart.Add(new CartItem
-                {
-                    ProductId = productToAdd.Id,
-                    ProductName = productToAdd.Name,
-                    Price = productToAdd.Price,
-                    Quantity = quantityToAdd,
-                    ImageUrl = productToAdd.ImageUrl,
-                    Size = selectedSize
-                });
-            }
-
-            Session["Cart"] = cart;
-            var header = (btl.UserControl.Header)Page.FindControl("header1"); 
-            header?.UpdateCartCount(); 
-            // Show confirmation message using JavaScript
-            string script = @"
-                var popup = document.getElementById('addCartMessagePopup');
-                if(popup) {
-                    popup.classList.add('show');
-                    setTimeout(function() { popup.classList.remove('show'); }, 2000); // Hide after 2 seconds
-                }";
-            ScriptManager.RegisterStartupScript(UpdatePanelProducts, UpdatePanelProducts.GetType(), "showAddCartPopup", script, true);
-        }
-
-
-        private void LoadProducts(bool resetPage = false)
-        {
-            List<Product> allProducts = (List<Product>)Application["products"];
+            List<Product> allProducts = Application["products"] as List<Product>;
             if (allProducts == null)
             {
-                rptProductList.DataSource = null;
-                rptProductList.DataBind();
-                litNoProducts.Visible = true;
-                litPagination.Text = "";
+                ShowNoProductsMessage("Lỗi tải danh sách sản phẩm.");
                 return;
             }
 
             IEnumerable<Product> filteredProducts = allProducts;
 
-            List<string> selectedCategoryIds = cblCategories.Items.Cast<ListItem>()
-                                                 .Where(li => li.Selected)
-                                                 .Select(li => li.Value)
-                                                 .ToList();
-            if (selectedCategoryIds.Any())
+            // --- Lọc theo Danh mục (Category) ---
+            if (cblCategories != null) // Kiểm tra control tồn tại
             {
-                List<int> filterCategoryIntIds = selectedCategoryIds.Select(int.Parse).ToList();
-                filteredProducts = filteredProducts.Where(p => filterCategoryIntIds.Contains(p.CategoryId));
-            }
-
-
-            List<string> selectedPriceRanges = cblPriceRanges.Items.Cast<ListItem>()
-                                                 .Where(li => li.Selected)
-                                                 .Select(li => li.Value)
-                                                 .ToList();
-            if (selectedPriceRanges.Any())
-            {
-                List<int> filterPriceIntRanges = selectedPriceRanges.Select(int.Parse).ToList();
-                filteredProducts = filteredProducts.Where(p => {
-                    bool match = false;
-                    if (filterPriceIntRanges.Contains(1) && p.Price < 500000) match = true;
-                    if (filterPriceIntRanges.Contains(2) && p.Price >= 500000 && p.Price <= 1000000) match = true;
-                    if (filterPriceIntRanges.Contains(3) && p.Price > 1000000) match = true;
-                    return match;
-                });
-            }
-
-            int totalItems = filteredProducts.Count();
-            int totalPages = (int)Math.Ceiling((double)totalItems / PageSize);
-            int currentPage = 1;
-
-            if (!resetPage && !string.IsNullOrEmpty(Request.QueryString["page"]))
-            {
-                int.TryParse(Request.QueryString["page"], out currentPage);
-            }
-
-
-            if (currentPage < 1) currentPage = 1;
-            if (currentPage > totalPages && totalPages > 0) currentPage = totalPages;
-
-            var pagedProducts = filteredProducts.Skip((currentPage - 1) * PageSize).Take(PageSize);
-
-            rptProductList.DataSource = pagedProducts;
-            rptProductList.DataBind();
-            litNoProducts.Visible = !pagedProducts.Any();
-
-
-            litPagination.Text = GeneratePaginationHtml(currentPage, totalPages);
-
-            UpdateBrowserUrlAfterFilter(currentPage);
-
-        }
-
-        private string GeneratePaginationHtml(int currentPage, int totalPages)
-        {
-            if (totalPages <= 1) return string.Empty;
-
-            StringBuilder paginationHtml = new StringBuilder("<ul class='pagination'>");
-
-            List<string> selectedCategoryIds = cblCategories.Items.Cast<ListItem>()
+                List<string> selectedCategoryIds = cblCategories.Items.Cast<ListItem>()
                                                 .Where(li => li.Selected)
                                                 .Select(li => li.Value)
                                                 .ToList();
-            List<string> selectedPriceRanges = cblPriceRanges.Items.Cast<ListItem>()
-                                                  .Where(li => li.Selected)
-                                                  .Select(li => li.Value)
-                                                  .ToList();
 
-            var queryParams = HttpUtility.ParseQueryString(string.Empty);
-            if (selectedCategoryIds.Any())
-            {
-                queryParams["cat"] = string.Join(",", selectedCategoryIds);
-            }
-            if (selectedPriceRanges.Any())
-            {
-                queryParams["price"] = string.Join(",", selectedPriceRanges);
+                if (selectedCategoryIds.Any())
+                {
+                    List<int> categoryIds = selectedCategoryIds.Select(int.Parse).ToList();
+                    filteredProducts = filteredProducts.Where(p => categoryIds.Contains(p.CategoryId));
+                }
             }
 
-            string baseQuery = queryParams.ToString();
 
-            string prevQuery = baseQuery + (string.IsNullOrEmpty(baseQuery) ? "" : "&") + $"page={(currentPage - 1)}";
-            string prevUrl = $"Products.aspx?{prevQuery}";
-            paginationHtml.Append($"<li class='page-item {(currentPage == 1 ? "disabled" : "")}'>");
-            paginationHtml.Append($"<a class='page-link' href='{(currentPage == 1 ? "#" : prevUrl)}' aria-label='Previous'><span aria-hidden='true'>&laquo;</span></a></li>");
-
-            for (int i = 1; i <= totalPages; i++)
+            // --- Lọc theo Giá (Price Range) ---
+            if (cblPriceRanges != null) // Kiểm tra control tồn tại
             {
-                string pageQuery = baseQuery + (string.IsNullOrEmpty(baseQuery) ? "" : "&") + $"page={i}";
-                string pageUrl = $"Products.aspx?{pageQuery}";
-                paginationHtml.Append($"<li class='page-item {(i == currentPage ? "active" : "")}'>");
-                paginationHtml.Append($"<a class='page-link' href='{pageUrl}'>{i}</a></li>");
-            }
-
-            string nextQuery = baseQuery + (string.IsNullOrEmpty(baseQuery) ? "" : "&") + $"page={(currentPage + 1)}";
-            string nextUrl = $"Products.aspx?{nextQuery}";
-            paginationHtml.Append($"<li class='page-item {(currentPage == totalPages ? "disabled" : "")}'>");
-            paginationHtml.Append($"<a class='page-link' href='{(currentPage == totalPages ? "#" : nextUrl)}' aria-label='Next'><span aria-hidden='true'>&raquo;</span></a></li>");
-
-            paginationHtml.Append("</ul>");
-            return paginationHtml.ToString();
-        }
-
-        private void UpdateBrowserUrlAfterFilter(int currentPage)
-        {
-            List<string> selectedCategoryIds = cblCategories.Items.Cast<ListItem>()
+                List<string> selectedPriceRanges = cblPriceRanges.Items.Cast<ListItem>()
                                                 .Where(li => li.Selected)
                                                 .Select(li => li.Value)
                                                 .ToList();
-            List<string> selectedPriceRanges = cblPriceRanges.Items.Cast<ListItem>()
-                                                  .Where(li => li.Selected)
-                                                  .Select(li => li.Value)
-                                                  .ToList();
 
-            var queryParams = HttpUtility.ParseQueryString(string.Empty);
-            if (selectedCategoryIds.Any())
-            {
-                queryParams["cat"] = string.Join(",", selectedCategoryIds);
-            }
-            if (selectedPriceRanges.Any())
-            {
-                queryParams["price"] = string.Join(",", selectedPriceRanges);
-            }
-            if (currentPage > 1)
-            {
-                queryParams["page"] = currentPage.ToString();
-            }
-
-
-            string newUrl = "Products.aspx";
-            if (queryParams.HasKeys())
-            {
-                newUrl += "?" + queryParams.ToString();
+                if (selectedPriceRanges.Any())
+                {
+                    List<Product> priceFilteredProducts = new List<Product>();
+                    foreach (string rangeValue in selectedPriceRanges)
+                    {
+                        switch (rangeValue)
+                        {
+                            case "1": // Dưới 500k
+                                priceFilteredProducts.AddRange(filteredProducts.Where(p => p.Price < 500000));
+                                break;
+                            case "2": // 500k - 1tr
+                                priceFilteredProducts.AddRange(filteredProducts.Where(p => p.Price >= 500000 && p.Price <= 1000000));
+                                break;
+                            case "3": // Trên 1tr
+                                priceFilteredProducts.AddRange(filteredProducts.Where(p => p.Price > 1000000));
+                                break;
+                        }
+                    }
+                    // Loại bỏ sản phẩm trùng lặp nếu chọn nhiều khoảng giá
+                    filteredProducts = priceFilteredProducts.Distinct();
+                }
             }
 
-            string script = $"if (history.pushState) {{ history.pushState(null, null, '{ResolveUrl(newUrl)}'); }}";
-            ScriptManager.RegisterStartupScript(UpdatePanelProducts, UpdatePanelProducts.GetType(), "updateUrl", script, true);
+
+            // --- Phân trang (Pagination) ---
+            // (Thêm logic phân trang ở đây nếu bạn muốn)
+            List<Product> finalProductList = filteredProducts.ToList();
+
+
+            // --- Hiển thị kết quả ---
+            if (finalProductList.Any())
+            {
+                if (rptProductList != null) // Kiểm tra control tồn tại
+                {
+                    rptProductList.DataSource = finalProductList;
+                    rptProductList.DataBind();
+                    rptProductList.Visible = true;
+                    if (litNoProducts != null) litNoProducts.Visible = false; // Ẩn thông báo "không có sản phẩm"
+                }
+            }
+            else
+            {
+                ShowNoProductsMessage("Không tìm thấy sản phẩm phù hợp.");
+            }
         }
+
+        // Hàm hiển thị thông báo khi không có sản phẩm
+        private void ShowNoProductsMessage(string message)
+        {
+            if (rptProductList != null) // Kiểm tra control tồn tại
+            {
+                rptProductList.DataSource = null;
+                rptProductList.DataBind();
+                rptProductList.Visible = false; // Ẩn repeater
+            }
+            if (litNoProducts != null) // Kiểm tra control tồn tại
+            {
+                litNoProducts.Text = $"<div class='grid-item full-width'><p>{message}</p></div>";
+                litNoProducts.Visible = true; // Hiện thông báo
+            }
+        }
+
+
+        // === PHƯƠNG THỨC NÀY ĐÃ ĐƯỢC THAY ĐỔI ĐỂ KIỂM TRA ĐĂNG NHẬP VÀ BỎ ALERT THÀNH CÔNG ===
+        protected void rptProductList_ItemCommand(object source, RepeaterCommandEventArgs e)
+        {
+            if (e.CommandName == "AddToCart")
+            {
+                // *** BƯỚC 1: KIỂM TRA ĐĂNG NHẬP ***
+                if (Request.Cookies["User"] == null)
+                {
+                    // *** CHƯA ĐĂNG NHẬP ***
+                    string loginUrl = ResolveUrl("~/Page/Login.aspx");
+                    string returnUrl = Request.Url.PathAndQuery;
+                    // Chuyển hướng đến trang Login, đính kèm URL trang hiện tại để quay lại
+                    Response.Redirect($"{loginUrl}?ReturnUrl={HttpUtility.UrlEncode(returnUrl)}", false);
+                    Context.ApplicationInstance.CompleteRequest(); // Dừng xử lý trang hiện tại
+                    return; // Dừng thực thi phương thức này
+                }
+
+                // *** BƯỚC 2: NẾU ĐÃ ĐĂNG NHẬP, TIẾP TỤC THÊM VÀO GIỎ ***
+                try
+                {
+                    int productId = Convert.ToInt32(e.CommandArgument);
+                    List<Product> allProducts = (List<Product>)Application["products"];
+                    Product productToAdd = allProducts?.FirstOrDefault(p => p.Id == productId);
+
+                    if (productToAdd != null)
+                    {
+                        List<CartItem> cart = Session["Cart"] as List<CartItem> ?? new List<CartItem>();
+                        string defaultSize = "M"; // Size mặc định khi thêm nhanh
+                        int defaultQuantity = 1; // Số lượng mặc định
+                        CartItem existingItem = cart.FirstOrDefault(item => item.ProductId == productId && item.Size == defaultSize);
+
+                        if (existingItem != null)
+                        {
+                            existingItem.Quantity += defaultQuantity; // Tăng số lượng nếu đã có
+                        }
+                        else
+                        {
+                            // Thêm mới vào giỏ
+                            cart.Add(new CartItem
+                            {
+                                ProductId = productToAdd.Id,
+                                ProductName = productToAdd.Name,
+                                Price = productToAdd.Price,
+                                Quantity = defaultQuantity,
+                                ImageUrl = productToAdd.ImageUrl,
+                                Size = defaultSize
+                            });
+                        }
+                        Session["Cart"] = cart; // Lưu lại giỏ hàng vào Session
+
+                        // Cập nhật số lượng hiển thị trên icon giỏ hàng ở Header
+                        var header = (btl.UserControl.Header)FindControlRecursive(this.Page, "header1");
+                        header?.UpdateCartCount();
+
+                        // === DÒNG ALERT THÀNH CÔNG ĐÃ BỊ XÓA BỎ ===
+                        // string script = $"alert('Đã thêm \"{HttpUtility.JavaScriptStringEncode(productToAdd.Name)}\" (Size: {defaultSize}) vào giỏ!');";
+                        // if (ScriptManager1 != null) {
+                        //    ScriptManager.RegisterStartupScript(this, this.GetType(), "alertAddSuccess" + productId, script, true);
+                        // } else {
+                        //    Page.ClientScript.RegisterStartupScript(this.GetType(), "alertAddSuccess" + productId, script, true);
+                        // }
+                        // === KẾT THÚC PHẦN BỊ XÓA ===
+
+                    }
+                    else
+                    {
+                        // Thông báo lỗi nếu không tìm thấy sản phẩm (ID không đúng) - Vẫn giữ lại alert lỗi
+                        string script = "alert('Lỗi: Không tìm thấy sản phẩm!');";
+                        if (ScriptManager1 != null)
+                        {
+                            ScriptManager.RegisterStartupScript(this, this.GetType(), "alertAddErrorNotFound", script, true);
+                        }
+                        else
+                        {
+                            Page.ClientScript.RegisterStartupScript(this.GetType(), "alertAddErrorNotFound", script, true);
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    // Xử lý lỗi nếu có vấn đề xảy ra - Vẫn giữ lại alert lỗi
+                    System.Diagnostics.Debug.WriteLine("Lỗi thêm vào giỏ từ Products.aspx: " + ex.Message);
+                    string script = "alert('Đã có lỗi xảy ra khi thêm vào giỏ. Vui lòng thử lại!');";
+                    if (ScriptManager1 != null)
+                    {
+                        ScriptManager.RegisterStartupScript(this, this.GetType(), "alertAddException", script, true);
+                    }
+                    else
+                    {
+                        Page.ClientScript.RegisterStartupScript(this.GetType(), "alertAddException", script, true);
+                    }
+                }
+            }
+        }
+        // === KẾT THÚC THAY ĐỔI ===
+
+
+        // Hàm helper để tìm control lồng nhau (ví dụ Header trong MasterPage hoặc Page)
+        private Control FindControlRecursive(Control rootControl, string controlID)
+        {
+            if (rootControl == null) return null;
+            Control foundControl = rootControl.FindControl(controlID);
+            if (foundControl != null) return foundControl;
+
+            if (rootControl.HasControls())
+            {
+                foreach (Control controlToSearch in rootControl.Controls)
+                {
+                    foundControl = FindControlRecursive(controlToSearch, controlID);
+                    if (foundControl != null) return foundControl;
+                }
+            }
+
+            // Kiểm tra cả MasterPage nếu trang hiện tại có MasterPage
+            System.Web.UI.Page currentPage = rootControl as System.Web.UI.Page;
+            if (currentPage != null && currentPage.Master != null)
+            {
+                foundControl = FindControlRecursive(currentPage.Master, controlID);
+                if (foundControl != null) return foundControl;
+            }
+
+            return null;
+        }
+
+
+        // (Optional) Hàm này chỉ cần thiết nếu bạn dùng Literal litProductList thay vì Repeater rptProducts
+        // Hàm này không được sử dụng vì bạn đang dùng Repeater rptProductList
+        /*
+        private string GenerateProductListHtml(List<Product> products)
+        {
+             // ... code cũ ...
+        }
+        */
     }
 }

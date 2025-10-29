@@ -68,21 +68,22 @@
             color: white;
             border: 1px solid #007bff;
         }
-        .btn-primary:hover {
-            background-color: #0056b3;
-            border-color: #0056b3;
-        }
+
+            .btn-primary:hover {
+                background-color: #0056b3;
+                border-color: #0056b3;
+            }
 
         .btn-secondary {
             background-color: #6c757d;
             color: white;
-             border: 1px solid #6c757d;
+            border: 1px solid #6c757d;
         }
-         .btn-secondary:hover {
-            background-color: #5a6268;
-             border-color: #545b62;
-         }
 
+            .btn-secondary:hover {
+                background-color: #5a6268;
+                border-color: #545b62;
+            }
     </style>
 </head>
 <body>
@@ -102,5 +103,7 @@
             </div>
         </div>
     </form>
+    <script src="/assets/js/admin.js"></script>
+
 </body>
 </html>

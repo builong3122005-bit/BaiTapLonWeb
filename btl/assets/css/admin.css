@@ -375,3 +375,34 @@ select.form-control {
 .hidden {
     display: none;
 }
+/* ===== CSS CHO ẢNH SẢN PHẨM TRONG BẢNG ADMIN ===== */
+
+/* Áp dụng cho thẻ <img> có class 'product-thumbnail' trong bảng */
+.table-responsive table img.product-thumbnail {
+    max-width: 60px; /* Giới hạn chiều rộng tối đa của ảnh */
+    height: auto; /* Chiều cao tự động theo tỷ lệ */
+    max-height: 60px; /* Giới hạn chiều cao tối đa (tùy chọn) */
+    display: block; /* Giúp căn giữa dễ hơn nếu cần */
+    margin: 0 auto; /* Căn giữa ảnh trong ô (tùy chọn) */
+    border: 1px solid #eee; /* Thêm viền mỏng (tùy chọn) */
+    object-fit: contain; /* Đảm bảo ảnh hiển thị hết, không bị cắt (quan trọng) */
+    vertical-align: middle; /* Căn ảnh theo chiều dọc với text (nếu có) */
+}
+
+/* Căn giữa nội dung trong các ô chứa ảnh và thao tác (tùy chọn) */
+.table-responsive table td:nth-child(2), /* Cột thứ 2 (Ảnh) */
+.table-responsive table td:last-child { /* Cột cuối (Thao tác) */
+    text-align: center;
+    vertical-align: middle; /* Căn giữa theo chiều dọc */
+}
+
+    /* Đảm bảo các nút Sửa/Xóa nằm trên cùng hàng (nếu cần) */
+    .table-responsive table td:last-child a.btn {
+        margin-bottom: 5px; /* Thêm khoảng cách dưới nếu muốn nút xuống dòng */
+        /* display: inline-block; */ /* Bỏ comment nếu muốn nút luôn cùng hàng */
+        margin-right: 5px; /* Khoảng cách giữa các nút */
+    }
+
+        .table-responsive table td:last-child a.btn:last-child {
+            margin-right: 0;
+        }

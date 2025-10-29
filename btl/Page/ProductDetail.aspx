@@ -155,6 +155,7 @@
             border-radius: 4px;
         }
 
+
         .size-options input[type=radio] {
             display: none;
         }
@@ -165,5 +166,7 @@
             border-color: #333;
         }
     </style>
+    <script src="/assets/js/admin.js"></script>
+
 </body>
 </html>

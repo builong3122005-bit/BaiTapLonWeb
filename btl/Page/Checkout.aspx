@@ -25,9 +25,9 @@
                 <h1>Thanh toán</h1>
             </div>
             <div class="container py-5">
-                 <asp:Panel ID="pnlCheckoutError" runat="server" Visible="false" CssClass="alert alert-danger">
-                     <%-- Thông báo lỗi (ví dụ giỏ hàng trống) --%>
-                 </asp:Panel>
+                <asp:Panel ID="pnlCheckoutError" runat="server" Visible="false" CssClass="alert alert-danger">
+                    <%-- Thông báo lỗi (ví dụ giỏ hàng trống) --%>
+                </asp:Panel>
 
                 <asp:Panel ID="pnlCheckoutContent" runat="server">
                     <div class="layout-60-40">
@@ -47,24 +47,24 @@
                                 <div class="form-group">
                                     <label for="txtAddress">Địa chỉ*</label>
                                     <asp:TextBox ID="txtAddress" runat="server" required="required"></asp:TextBox>
-                                     <asp:RequiredFieldValidator ID="rfvAddress" runat="server" ControlToValidate="txtAddress"
-                                                ErrorMessage="Vui lòng nhập địa chỉ" CssClass="error-message" Display="Dynamic">*</asp:RequiredFieldValidator>
+                                    <asp:RequiredFieldValidator ID="rfvAddress" runat="server" ControlToValidate="txtAddress"
+                                        ErrorMessage="Vui lòng nhập địa chỉ" CssClass="error-message" Display="Dynamic">*</asp:RequiredFieldValidator>
                                 </div>
                                 <div class="form-group">
                                     <label for="txtPhone">Số điện thoại*</label>
                                     <asp:TextBox ID="txtPhone" runat="server" TextMode="Phone" required="required"></asp:TextBox>
-                                     <asp:RequiredFieldValidator ID="rfvPhone" runat="server" ControlToValidate="txtPhone"
-                                                ErrorMessage="Vui lòng nhập số điện thoại" CssClass="error-message" Display="Dynamic">*</asp:RequiredFieldValidator>
-                                      <asp:RegularExpressionValidator ID="revPhone" runat="server" ControlToValidate="txtPhone"
-                                                ValidationExpression="^\d{10,11}$" ErrorMessage="Số điện thoại không hợp lệ" CssClass="error-message" Display="Dynamic">*</asp:RegularExpressionValidator>
+                                    <asp:RequiredFieldValidator ID="rfvPhone" runat="server" ControlToValidate="txtPhone"
+                                        ErrorMessage="Vui lòng nhập số điện thoại" CssClass="error-message" Display="Dynamic">*</asp:RequiredFieldValidator>
+                                    <asp:RegularExpressionValidator ID="revPhone" runat="server" ControlToValidate="txtPhone"
+                                        ValidationExpression="^\d{10,11}$" ErrorMessage="Số điện thoại không hợp lệ" CssClass="error-message" Display="Dynamic">*</asp:RegularExpressionValidator>
                                 </div>
                                 <div class="form-group">
                                     <label for="txtEmail">Email*</label>
                                     <asp:TextBox ID="txtEmail" runat="server" TextMode="Email" required="required"></asp:TextBox>
-                                     <asp:RequiredFieldValidator ID="rfvEmail" runat="server" ControlToValidate="txtEmail"
-                                                ErrorMessage="Vui lòng nhập Email" CssClass="error-message" Display="Dynamic">*</asp:RequiredFieldValidator>
-                                       <asp:RegularExpressionValidator ID="revEmail" runat="server" ControlToValidate="txtEmail"
-                                                ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" ErrorMessage="Email không hợp lệ" CssClass="error-message" Display="Dynamic">*</asp:RegularExpressionValidator>
+                                    <asp:RequiredFieldValidator ID="rfvEmail" runat="server" ControlToValidate="txtEmail"
+                                        ErrorMessage="Vui lòng nhập Email" CssClass="error-message" Display="Dynamic">*</asp:RequiredFieldValidator>
+                                    <asp:RegularExpressionValidator ID="revEmail" runat="server" ControlToValidate="txtEmail"
+                                        ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" ErrorMessage="Email không hợp lệ" CssClass="error-message" Display="Dynamic">*</asp:RegularExpressionValidator>
                                 </div>
                                 <div class="form-group">
                                     <label for="txtNotes">Ghi chú đơn hàng (tùy chọn)</label>
@@ -76,7 +76,7 @@
                             <div class="order-summary">
                                 <h2 class="form-section-title">Đơn hàng của bạn</h2>
                                 <div class="order-items">
-                                     <%-- Hiển thị các item trong đơn hàng --%>
+                                    <%-- Hiển thị các item trong đơn hàng --%>
                                     <asp:Literal ID="litOrderItems" runat="server"></asp:Literal>
                                 </div>
                                 <div class="summary-line">
@@ -112,10 +112,12 @@
                             </div>
                         </div>
                     </div>
-                 </asp:Panel>
+                </asp:Panel>
             </div>
         </main>
         <uc:Footer runat="server" ID="footer1" />
     </form>
+    <script src="/assets/js/admin.js"></script>
+
 </body>
 </html>

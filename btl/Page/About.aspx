@@ -152,5 +152,7 @@
         </div>
         <uc:Footer runat="server" ID="header2" />
     </form>
+    <script src="/assets/js/admin.js"></script>
+
 </body>
 </html>

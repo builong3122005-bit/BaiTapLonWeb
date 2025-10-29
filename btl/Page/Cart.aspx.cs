@@ -1,10 +1,8 @@
-﻿using btl.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
+using btl.Models;
 
 namespace btl.Page
 {
@@ -71,12 +69,12 @@ namespace btl.Page
                 }
                 else
                 {
-                    txtQuantity.Text = itemToModify.Quantity.ToString(); 
+                    txtQuantity.Text = itemToModify.Quantity.ToString();
                 }
             }
 
             Session["Cart"] = cart;
-            BindCart(); 
+            BindCart();
         }
     }
 }
