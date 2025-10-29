@@ -98,6 +98,6 @@
         </main>
         <uc:Footer runat="server" ID="header2" />
     </form>
-    <script src="~/assets/js/main.js"></script>
+    <script src="../assets/js/main.js"></script>
 </body>
 </html>

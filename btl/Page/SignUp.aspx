@@ -68,7 +68,7 @@
     </form>
 
     <!-- Script từ root -->
-    <script src="~/assets/js/main.js"></script>
+    <script src="../assets/js/main.js"></script>
     <script src="/assets/js/product-detail.js"></script>
     <script src="/assets/js/sign_up.js" type="module"></script>
 </body>
