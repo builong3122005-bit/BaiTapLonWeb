@@ -103,7 +103,6 @@
             </div>
         </div>
     </form>
-    <script src="../assets/js/admin.js"></script>
     <script src="../assets/js/main.js"></script>
 
 
