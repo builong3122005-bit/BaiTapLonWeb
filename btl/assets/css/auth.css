@@ -68,22 +68,10 @@ form.auth-page {
 
 .field-error {
     display: block;
-    min-height: 15px; /* ← Chiều cao tối thiểu cố định */
     margin-top: 6px;
     font-size: 0.9rem;
     color: #e02424;
-    line-height: 1.2;
-    transition: opacity 0.2s ease;
 }
-
-    .field-error:empty {
-        opacity: 0; /* Ẩn nhưng vẫn chiếm không gian */
-    }
-
-    /* Khi có lỗi */
-    .field-error:not(:empty) {
-        opacity: 1;
-    }
 
 input.invalid {
     border-color: #e02424 !important;

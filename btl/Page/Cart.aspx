@@ -101,10 +101,7 @@
             </div>
         </main>
         <uc:Footer runat="server" ID="footer1" />
-        <script src="/assets/js/admin.js"></script>
-
     </form>
-
     <script src="../assets/js/main.js"></script>
 
 </body>

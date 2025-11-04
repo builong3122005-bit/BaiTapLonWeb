@@ -98,57 +98,53 @@
         <uc:Footer runat="server" ID="footer1" />
     </form>
 
+    <script src="<%= ResolveUrl("~/assets/js/main.js") %>"></script>
     <script>
-        // ✅ CHẠY SAU KHI DOM LOAD XONG
-        document.addEventListener('DOMContentLoaded', function () {
-            // === TAB SWITCHING ===
-            const tabLinks = document.querySelectorAll('.tab-link');
-            const tabPanes = document.querySelectorAll('.tab-pane');
-            if (tabLinks.length > 0 && tabPanes.length > 0) {
-                tabLinks.forEach(link => {
-                    link.addEventListener('click', () => {
-                        const tabId = link.getAttribute('data-tab');
-                        tabLinks.forEach(l => l.classList.remove('active'));
-                        tabPanes.forEach(p => p.classList.remove('active'));
-                        link.classList.add('active');
-                        const targetPane = document.getElementById(tabId);
-                        if (targetPane) {
-                            targetPane.classList.add('active');
-                        }
-                    });
-                });
-            }
-
-            // === THUMBNAIL GALLERY ===
-            const thumbnails = document.querySelectorAll('.thumbnail-image');
-            const mainImg = document.getElementById('<%= mainImage.ClientID %>');
-            if (mainImg && thumbnails.length > 0) {
-                thumbnails.forEach(thumb => {
-                    thumb.addEventListener('click', () => {
-                        thumbnails.forEach(t => t.classList.remove('active'));
-                        thumb.classList.add('active');
-                        mainImg.src = thumb.src;
-                    });
-                });
-            }
-
-            // === SIZE SELECTION ===
-            const sizeRadios = document.querySelectorAll('#<%= rblSize.ClientID %> input[type=radio]');
-            const sizeLabels = document.querySelectorAll('#<%= rblSize.ClientID %> label');
-            sizeRadios.forEach((radio, index) => {
-                radio.addEventListener('change', () => {
-                    sizeLabels.forEach(label => label.classList.remove('active'));
-                    if (radio.checked && sizeLabels[index]) {
-                        sizeLabels[index].classList.add('active');
+        const tabLinks = document.querySelectorAll('.tab-link');
+        const tabPanes = document.querySelectorAll('.tab-pane');
+        if (tabLinks.length > 0 && tabPanes.length > 0) {
+            tabLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    const tabId = link.getAttribute('data-tab');
+                    tabLinks.forEach(l => l.classList.remove('active'));
+                    tabPanes.forEach(p => p.classList.remove('active'));
+                    link.classList.add('active');
+                    const targetPane = document.getElementById(tabId);
+                    if (targetPane) {
+                        targetPane.classList.add('active');
                     }
                 });
-                if (radio.checked && sizeLabels[index]) {
+            });
+        }
+
+        const thumbnails = document.querySelectorAll('.thumbnail-image');
+        const mainImg = document.getElementById('<%= mainImage.ClientID %>');
+        if (mainImg && thumbnails.length > 0) {
+            thumbnails.forEach(thumb => {
+                thumb.addEventListener('click', () => {
+                    thumbnails.forEach(t => t.classList.remove('active'));
+                    thumb.classList.add('active');
+                    mainImg.src = thumb.src;
+                });
+            });
+        }
+
+        const sizeRadios = document.querySelectorAll('#<%= rblSize.ClientID %> input[type=radio]');
+        const sizeLabels = document.querySelectorAll('#<%= rblSize.ClientID %> label');
+        sizeRadios.forEach((radio, index) => {
+            radio.addEventListener('change', () => {
+                sizeLabels.forEach(label => label.classList.remove('active'));
+                if (radio.checked) {
                     sizeLabels[index].classList.add('active');
                 }
             });
+            if (radio.checked && sizeLabels[index]) {
+                sizeLabels[index].classList.add('active');
+            }
         });
+
+
     </script>
-    <script src="<%= ResolveUrl("~/assets/js/main.js") %>"></script>
     <style>
         .size-options label {
             display: inline-block;
@@ -159,6 +155,7 @@
             border-radius: 4px;
         }
 
+
         .size-options input[type=radio] {
             display: none;
         }
@@ -168,28 +165,10 @@
             color: white;
             border-color: #333;
         }
-
-        /* ✅ CSS CHO MÔ TẢ NGẮN TRONG SẢN PHẨM LIÊN QUAN */
-        .related-products-section .product-description {
-            font-size: 0.9rem;
-            color: #666;
-            line-height: 1.5;
-            margin-top: 8px;
-            display: -webkit-box;
-            -webkit-line-clamp: 3;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            min-height: 4rem;
-        }
-
-        @media (max-width: 767px) {
-            .related-products-section .product-description {
-                font-size: 0.85rem;
-                -webkit-line-clamp: 2;
-                min-height: 3rem;
-            }
-        }
     </style>
+    <script src="../assets/js/admin.js"></script>
+    <script src="../assets/js/main.js"></script>
+
+
 </body>
 </html>
