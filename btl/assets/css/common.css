@@ -319,20 +319,6 @@ img {
         width: 100%;
         text-align: center;
     }
-<<<<<<< HEAD
-=======
-
-    /* ✅ THÊM OVERLAY KHI MENU MỞ (TÙY CHỌN) */
-    .nav-list.active::before {
-        content: "";
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: -1;
-    }
->>>>>>> 023bc26845e32a3bfe0cdb759a8f5c259a4e4f66
 }
 
 /* ==========================================
