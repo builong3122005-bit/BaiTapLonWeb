@@ -1,100 +1,142 @@
 ﻿// ============================================
-// MAIN.JS - FIXED VERSION
-// Xử lý menu toggle cho cả User pages và Admin
+// MAIN.JS - COMPLETE FIX
 // ============================================
 
 document.addEventListener("DOMContentLoaded", () => {
-    console.log("✅ main.js loaded successfully"); // Debug: Kiểm tra file đã load
+    console.log("✅ main.js loaded");
 
     // ==========================================
-    // MENU TOGGLE CHO HEADER (USER PAGES)
+    // MENU TOGGLE - USER PAGES
     // ==========================================
     const menuToggle = document.getElementById("menu-toggle");
     const navList = document.querySelector(".nav-list");
 
-    console.log("🔍 Menu Toggle element:", menuToggle); // Debug
-    console.log("🔍 Nav List element:", navList); // Debug
-
-    if (menuToggle && navList) {
-        console.log("✅ Menu toggle elements found!");
-
-        // ✅ SỰ KIỆN CLICK VÀO NÚT MENU TOGGLE
-        menuToggle.addEventListener("click", (e) => {
-            e.preventDefault(); // Ngăn hành vi mặc định
-            e.stopPropagation(); // Ngăn sự kiện lan truyền
-
-            console.log("🎯 Menu toggle clicked!"); // Debug
-
-            // Toggle class 'active' để hiện/ẩn menu
-            navList.classList.toggle("active");
-
-            // Cập nhật aria-expanded cho accessibility
-            const isExpanded = navList.classList.contains("active");
-            menuToggle.setAttribute("aria-expanded", isExpanded);
-
-            console.log("📱 Menu is now:", isExpanded ? "OPEN" : "CLOSED");
-        });
-
-        // ✅ ĐÓNG MENU KHI CLICK VÀO LINK TRONG MENU (UX TỐT HƠN TRÊN MOBILE)
-        const navLinks = navList.querySelectorAll('.nav-link');
-        navLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                // Chỉ đóng menu khi ở chế độ mobile
-                if (window.innerWidth <= 991) {
-                    navList.classList.remove('active');
-                    menuToggle.setAttribute("aria-expanded", "false");
-                    console.log("🔗 Nav link clicked, menu closed");
-                }
-            });
-        });
-
-        // ✅ ĐÓNG MENU KHI CLICK BÊN NGOÀI
-        document.addEventListener("click", (e) => {
-            // Kiểm tra xem click có nằm trong menu toggle hoặc nav list không
-            if (!menuToggle.contains(e.target) && !navList.contains(e.target)) {
-                navList.classList.remove("active");
-                menuToggle.setAttribute("aria-expanded", "false");
-                console.log("🖱️ Clicked outside, menu closed");
-            }
-        });
-
-        // ✅ ĐÓNG MENU KHI RESIZE TỪ MOBILE LÊN DESKTOP
-        window.addEventListener('resize', () => {
-            if (window.innerWidth > 991) {
-                navList.classList.remove('active');
-                menuToggle.setAttribute("aria-expanded", "false");
-            }
-        });
-
-    } else {
-        console.warn("⚠️ Menu toggle or nav list NOT FOUND!"); // Debug warning
-        if (!menuToggle) console.error("❌ Element with id='menu-toggle' not found");
-        if (!navList) console.error("❌ Element with class='nav-list' not found");
+    if (!menuToggle || !navList) {
+        console.error("❌ Menu elements NOT FOUND");
+        console.log("menuToggle:", menuToggle);
+        console.log("navList:", navList);
+        return;
     }
 
+    console.log("✅ Menu elements found!");
+
+    // ===== TOGGLE MENU =====
+    menuToggle.addEventListener("click", function (e) {
+        e.preventDefault();
+        e.stopPropagation(); // Ngăn sự kiện lan ra document
+
+        const isCurrentlyActive = navList.classList.contains("active");
+        console.log("🎯 Toggle clicked! Current state:", isCurrentlyActive ? "OPEN" : "CLOSED");
+
+        if (isCurrentlyActive) {
+            // Đang MỞ → ĐÓNG lại
+            navList.classList.remove("active");
+            menuToggle.setAttribute("aria-expanded", "false");
+            console.log("➡️ CLOSING menu");
+        } else {
+            // Đang ĐÓNG → MỞ ra
+            navList.classList.add("active");
+            menuToggle.setAttribute("aria-expanded", "true");
+            console.log("➡️ OPENING menu");
+        }
+    });
+
+    // ===== ĐÓNG KHI CLICK VÀO LINK =====
+    const navLinks = navList.querySelectorAll('.nav-link');
+    console.log(`📌 Found ${navLinks.length} nav links`);
+
+    navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            if (window.innerWidth <= 991 && navList.classList.contains("active")) {
+                navList.classList.remove('active');
+                menuToggle.setAttribute("aria-expanded", "false");
+                console.log("🔗 Nav link clicked → Menu closed");
+            }
+        });
+    });
+
+    // ===== ĐÓNG KHI CLICK BÊN NGOÀI =====
+    // Sử dụng setTimeout để đảm bảo chạy SAU khi toggle hoàn tất
+    let canCheckOutsideClick = true;
+
+    menuToggle.addEventListener('click', () => {
+        canCheckOutsideClick = false;
+        setTimeout(() => {
+            canCheckOutsideClick = true;
+        }, 50);
+    });
+
+    document.addEventListener("click", (e) => {
+        if (!canCheckOutsideClick) {
+            console.log("⏸️ Skipping outside click check (just toggled)");
+            return;
+        }
+
+        // Chỉ xử lý khi menu đang MỞ
+        if (!navList.classList.contains("active")) {
+            return;
+        }
+
+        // Kiểm tra click có nằm NGOÀI menu và toggle không
+        const clickedInside = navList.contains(e.target) || menuToggle.contains(e.target);
+
+        if (!clickedInside) {
+            navList.classList.remove("active");
+            menuToggle.setAttribute("aria-expanded", "false");
+            console.log("🖱️ Clicked outside → Menu closed");
+        } else {
+            console.log("📍 Clicked inside menu or toggle");
+        }
+    });
+
+    // ===== ĐÓNG KHI RESIZE =====
+    window.addEventListener('resize', () => {
+        if (window.innerWidth > 991 && navList.classList.contains("active")) {
+            navList.classList.remove('active');
+            menuToggle.setAttribute("aria-expanded", "false");
+            console.log("📐 Resized to desktop → Menu closed");
+        }
+    });
+
+    // ===== PREVENT SCROLL WHEN MENU OPEN (BONUS) =====
+    const observer = new MutationObserver(() => {
+        if (navList.classList.contains("active")) {
+            document.body.style.overflow = "hidden";
+        } else {
+            document.body.style.overflow = "";
+        }
+    });
+
+    observer.observe(navList, {
+        attributes: true,
+        attributeFilter: ['class']
+    });
+
     // ==========================================
-    // MENU TOGGLE CHO ADMIN SIDEBAR
+    // ADMIN SIDEBAR TOGGLE
     // ==========================================
-    const adminMenuToggle = document.getElementById("menuToggle");
+    const adminToggle = document.getElementById("menuToggle");
     const adminSidebar = document.getElementById("sidebar");
 
-    if (adminMenuToggle && adminSidebar) {
-        console.log("✅ Admin menu toggle found!");
+    if (adminToggle && adminSidebar) {
+        console.log("✅ Admin elements found!");
 
-        adminMenuToggle.addEventListener("click", () => {
+        adminToggle.addEventListener("click", function (e) {
+            e.preventDefault();
+            e.stopPropagation();
             adminSidebar.classList.toggle("sidebar-open");
             console.log("🎯 Admin sidebar toggled");
         });
 
-        // Đóng sidebar khi click vào overlay (mobile)
-        const mainContent = document.querySelector(".main-content");
-        if (mainContent) {
-            mainContent.addEventListener("click", () => {
-                if (window.innerWidth <= 991) {
+        // Đóng admin sidebar khi click outside (chỉ trên mobile)
+        document.addEventListener("click", (e) => {
+            if (window.innerWidth <= 991 && adminSidebar.classList.contains("sidebar-open")) {
+                const clickedInside = adminSidebar.contains(e.target) || adminToggle.contains(e.target);
+                if (!clickedInside) {
                     adminSidebar.classList.remove("sidebar-open");
-                    console.log("📱 Admin sidebar closed (mobile)");
+                    console.log("🖱️ Admin sidebar closed (clicked outside)");
                 }
-            });
-        }
+            }
+        });
     }
 });
