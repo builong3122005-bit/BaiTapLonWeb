@@ -14,18 +14,22 @@ namespace btl.Page
 
             var listUser = Application["users"] as List<User> ?? new List<User>();
 
+            // ✅ THAY ĐỔI: Lấy số điện thoại thay vì email
             string Email = (email?.Value ?? "").Trim();
+
+            //string Email = (email?.Value ?? "").Trim();
             string Password = password?.Value ?? "";
 
             if (string.IsNullOrEmpty(Email) || string.IsNullOrEmpty(Password))
             {
-                errorMessage.Text = "Vui lòng nhập email và mật khẩu.";
+                errorMessage.Text = "Vui lòng nhập Email và mật khẩu.";
                 return;
             }
 
             var userLogin = listUser.FirstOrDefault(u =>
-                                 string.Equals(u.email, Email, StringComparison.OrdinalIgnoreCase)
-                                 && u.password == Password);
+            string.Equals(u.email, Email, StringComparison.OrdinalIgnoreCase)
+            //u.PhoneNumBer.Equals(PhoneNum) && u.password == Password);
+            && u.password == Password);
 
             if (userLogin != null)
             {

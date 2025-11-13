@@ -36,7 +36,7 @@
                             <a href="#orders" class="profile-nav-item" data-tab="orders" role="tab" aria-selected="false" aria-controls="orders-tab">
                                 <span class="nav-icon">📦</span><span>Đơn hàng của tôi</span>
                             </a>
-                           <%-- <a href="#addresses" class="profile-nav-item" data-tab="addresses" role="tab" aria-selected="false" aria-controls="addresses-tab">
+                            <%-- <a href="#addresses" class="profile-nav-item" data-tab="addresses" role="tab" aria-selected="false" aria-controls="addresses-tab">
                                 <span class="nav-icon">📍</span><span>Địa chỉ giao hàng</span>
                             </a> --%>
                             <a href="#password" class="profile-nav-item" data-tab="password" role="tab" aria-selected="false" aria-controls="password-tab">
@@ -54,7 +54,8 @@
                             <div class="profile-card">
                                 <div class="profile-header">
                                     <div class="profile-welcome">
-                                        <h2>Xin chào, <asp:Literal ID="litWelcomeName" runat="server">Khách</asp:Literal>!</h2>
+                                        <h2>Xin chào,
+                                            <asp:Literal ID="litWelcomeName" runat="server">Khách</asp:Literal>!</h2>
                                         <p class="profile-subtitle">Quản lý thông tin cá nhân của bạn</p>
                                     </div>
                                 </div>
@@ -64,23 +65,34 @@
                                     <div class="info-grid">
                                         <div class="info-item">
                                             <span class="info-label">Họ và tên</span>
-                                            <div class="info-value"><asp:Literal ID="litFullName" runat="server"></asp:Literal></div>
+                                            <div class="info-value">
+                                                <asp:Literal ID="litFullName" runat="server"></asp:Literal>
+                                            </div>
                                         </div>
                                         <div class="info-item">
                                             <span class="info-label">Email</span>
-                                            <div class="info-value"><asp:Literal ID="litEmail" runat="server"></asp:Literal></div>
+                                            <div class="info-value">
+                                                <asp:Literal ID="litEmail" runat="server"></asp:Literal>
+                                            </div>
                                         </div>
                                         <%-- Thêm các trường khác nếu có trong Model User --%>
-                                        <%--
-                                        <div class="info-item">
+
+                                        <!-- ✅ MỚI: Tên hiển thị -->
+                                        <!-- <div class="info-item">
+                                            <span class="info-label">Tên hiển thị</span>
+                                            <div class="info-value">
+                                                <asp:Literal ID="litDisplayName" runat="server"></asp:Literal>
+                                            </div>
+                                        </div> -->
+
+                                        <!-- ✅ MỚI: Số điện thoại -->
+                                        <!-- <div class="info-item">
                                             <span class="info-label">Số điện thoại</span>
-                                            <div class="info-value"><asp:Literal ID="litPhone" runat="server"></asp:Literal></div>
-                                        </div>
-                                         <div class="info-item full-width">
-                                            <span class="info-label">Địa chỉ</span>
-                                            <div class="info-value"><asp:Literal ID="litAddress" runat="server"></asp:Literal></div>
-                                        </div>
-                                        --%>
+                                            <div class="info-value">
+                                                <asp:Literal ID="litPhone" runat="server"></asp:Literal>
+                                            </div>
+                                        </div> -->
+
                                     </div>
                                     <div class="profile-actions">
                                         <%-- Nút chỉnh sửa (cần trang/modal riêng) --%>
@@ -90,23 +102,27 @@
 
                                 <div class="profile-stats">
                                     <h3 class="section-title-small">Thống kê đơn hàng</h3>
-                                     <div class="stats-grid">
-                                         <div class="stat-card">
-                                             <div class="stat-icon">📦</div>
-                                             <div class="stat-info">
-                                                 <div class="stat-number"><asp:Literal ID="litTotalOrders" runat="server">0</asp:Literal></div>
-                                                 <div class="stat-label">Tổng đơn</div>
-                                             </div>
-                                         </div>
-                                          <div class="stat-card">
-                                             <div class="stat-icon">💰</div>
-                                             <div class="stat-info">
-                                                 <div class="stat-number"><asp:Literal ID="litTotalSpent" runat="server">0đ</asp:Literal></div>
-                                                 <div class="stat-label">Tổng chi tiêu</div>
-                                             </div>
-                                         </div>
-                                          <%-- Có thể thêm các thống kê khác --%>
-                                     </div>
+                                    <div class="stats-grid">
+                                        <div class="stat-card">
+                                            <div class="stat-icon">📦</div>
+                                            <div class="stat-info">
+                                                <div class="stat-number">
+                                                    <asp:Literal ID="litTotalOrders" runat="server">0</asp:Literal>
+                                                </div>
+                                                <div class="stat-label">Tổng đơn</div>
+                                            </div>
+                                        </div>
+                                        <div class="stat-card">
+                                            <div class="stat-icon">💰</div>
+                                            <div class="stat-info">
+                                                <div class="stat-number">
+                                                    <asp:Literal ID="litTotalSpent" runat="server">0đ</asp:Literal>
+                                                </div>
+                                                <div class="stat-label">Tổng chi tiêu</div>
+                                            </div>
+                                        </div>
+                                        <%-- Có thể thêm các thống kê khác --%>
+                                    </div>
                                 </div>
 
                             </div>
@@ -124,7 +140,7 @@
                                     <%-- Dùng Repeater để hiển thị danh sách đơn hàng --%>
                                     <asp:Repeater ID="rptOrders" runat="server">
                                         <ItemTemplate>
-                                             <div class="order-card">
+                                            <div class="order-card">
                                                 <div class="order-header">
                                                     <div>
                                                         <div class="order-id">Đơn hàng #<%# Eval("Id") %></div>
@@ -142,15 +158,17 @@
                                                         <span class="order-total"><%# Eval("TotalAmount", "{0:N0}đ") %></span>
                                                     </div>
                                                     <div class="address-actions">
-                                                         <%-- Nút Chi tiết đơn hàng (cần trang riêng) --%>
+                                                        <%-- Nút Chi tiết đơn hàng (cần trang riêng) --%>
                                                         <asp:HyperLink NavigateUrl='<%# Eval("Id", "OrderDetail.aspx?id={0}") %>' Text="Xem chi tiết" CssClass="btn btn-small btn-secondary" runat="server" />
-                                                         <%-- Nút Mua lại/Hủy đơn tùy trạng thái (logic phức tạp hơn) --%>
+                                                        <%-- Nút Mua lại/Hủy đơn tùy trạng thái (logic phức tạp hơn) --%>
                                                     </div>
                                                 </div>
                                             </div>
                                         </ItemTemplate>
-                                        <AlternatingItemTemplate> <%-- Style khác cho hàng xen kẽ nếu muốn --%>
-                                             <div class="order-card alt-style"> <%-- Thêm class alt-style --%>
+                                        <AlternatingItemTemplate>
+                                            <%-- Style khác cho hàng xen kẽ nếu muốn --%>
+                                            <div class="order-card alt-style">
+                                                <%-- Thêm class alt-style --%>
                                                 <div class="order-header">
                                                     <div>
                                                         <div class="order-id">Đơn hàng #<%# Eval("Id") %></div>
@@ -180,7 +198,7 @@
                             </div>
                         </div>
 
-                       <%-- <div class="tab-content" id="addresses-tab" role="tabpanel" aria-hidden="true">
+                        <%-- <div class="tab-content" id="addresses-tab" role="tabpanel" aria-hidden="true">
                            Nội dung tab Địa chỉ (Tĩnh hoặc động)
                         </div> --%>
 
@@ -197,31 +215,31 @@
                                         <div class="form-group">
                                             <label for="<%= txtCurrentPassword.ClientID %>">Mật khẩu hiện tại</label>
                                             <asp:TextBox ID="txtCurrentPassword" runat="server" TextMode="Password" required="required"></asp:TextBox>
-                                             <asp:RequiredFieldValidator ID="rfvCurrentPassword" runat="server" ControlToValidate="txtCurrentPassword"
+                                            <asp:RequiredFieldValidator ID="rfvCurrentPassword" runat="server" ControlToValidate="txtCurrentPassword"
                                                 ErrorMessage="Vui lòng nhập mật khẩu hiện tại" CssClass="error-message" Display="Dynamic" ValidationGroup="ChangePassword">*</asp:RequiredFieldValidator>
                                         </div>
                                         <div class="form-group">
                                             <label for="<%= txtNewPassword.ClientID %>">Mật khẩu mới</label>
                                             <asp:TextBox ID="txtNewPassword" runat="server" TextMode="Password" required="required"></asp:TextBox>
-                                             <asp:RequiredFieldValidator ID="rfvNewPassword" runat="server" ControlToValidate="txtNewPassword"
+                                            <asp:RequiredFieldValidator ID="rfvNewPassword" runat="server" ControlToValidate="txtNewPassword"
                                                 ErrorMessage="Vui lòng nhập mật khẩu mới" CssClass="error-message" Display="Dynamic" ValidationGroup="ChangePassword">*</asp:RequiredFieldValidator>
-                                             <asp:RegularExpressionValidator ID="revNewPassword" runat="server" ControlToValidate="txtNewPassword"
-                                                 ValidationExpression="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$"
-                                                 ErrorMessage="Mật khẩu ít nhất 8 ký tự, gồm chữ hoa, thường, số" CssClass="error-message" Display="Dynamic" ValidationGroup="ChangePassword">*</asp:RegularExpressionValidator>
+                                            <asp:RegularExpressionValidator ID="revNewPassword" runat="server" ControlToValidate="txtNewPassword"
+                                                ValidationExpression="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$"
+                                                ErrorMessage="Mật khẩu ít nhất 8 ký tự, gồm chữ hoa, thường, số" CssClass="error-message" Display="Dynamic" ValidationGroup="ChangePassword">*</asp:RegularExpressionValidator>
                                             <small style="color: #777; margin-top: 5px; display: block;">Mật khẩu phải có ít nhất 8 ký tự, bao gồm chữ hoa, chữ thường và số</small>
                                         </div>
                                         <div class="form-group">
                                             <label for="<%= txtConfirmPassword.ClientID %>">Xác nhận mật khẩu mới</label>
                                             <asp:TextBox ID="txtConfirmPassword" runat="server" TextMode="Password" required="required"></asp:TextBox>
-                                             <asp:RequiredFieldValidator ID="rfvConfirmPassword" runat="server" ControlToValidate="txtConfirmPassword"
+                                            <asp:RequiredFieldValidator ID="rfvConfirmPassword" runat="server" ControlToValidate="txtConfirmPassword"
                                                 ErrorMessage="Vui lòng xác nhận mật khẩu" CssClass="error-message" Display="Dynamic" ValidationGroup="ChangePassword">*</asp:RequiredFieldValidator>
-                                             <asp:CompareValidator ID="cvConfirmPassword" runat="server" ControlToValidate="txtConfirmPassword" ControlToCompare="txtNewPassword"
-                                                 Operator="Equal" ErrorMessage="Mật khẩu xác nhận không khớp" CssClass="error-message" Display="Dynamic" ValidationGroup="ChangePassword">*</asp:CompareValidator>
+                                            <asp:CompareValidator ID="cvConfirmPassword" runat="server" ControlToValidate="txtConfirmPassword" ControlToCompare="txtNewPassword"
+                                                Operator="Equal" ErrorMessage="Mật khẩu xác nhận không khớp" CssClass="error-message" Display="Dynamic" ValidationGroup="ChangePassword">*</asp:CompareValidator>
                                         </div>
                                         <div class="profile-actions" style="margin-top: 30px;">
                                             <asp:Button ID="btnChangePassword" runat="server" Text="Cập nhật mật khẩu" CssClass="btn" OnClick="btnChangePassword_Click" ValidationGroup="ChangePassword" />
-                                             <asp:Label ID="lblPasswordMessage" runat="server" CssClass="password-message" EnableViewState="false"></asp:Label>
-                                             <asp:ValidationSummary ID="ValidationSummaryPassword" runat="server" CssClass="error-summary" HeaderText="Lỗi:" ValidationGroup="ChangePassword" />
+                                            <asp:Label ID="lblPasswordMessage" runat="server" CssClass="password-message" EnableViewState="false"></asp:Label>
+                                            <asp:ValidationSummary ID="ValidationSummaryPassword" runat="server" CssClass="error-summary" HeaderText="Lỗi:" ValidationGroup="ChangePassword" />
                                         </div>
                                     </div>
                                 </div>

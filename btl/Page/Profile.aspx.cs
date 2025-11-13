@@ -1,10 +1,9 @@
-﻿using btl.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
+using btl.Models;
 
 namespace btl.Page
 {
@@ -60,6 +59,21 @@ namespace btl.Page
         {
             if (currentUser != null)
             {
+                //string displayName = string.IsNullOrWhiteSpace(currentUser.DisplayName) ? currentUser.fullname : currentUser.DisplayName;
+                //// ✅ THÊM MỚI: Hiển thị DisplayName
+                //litDisplayName.Text = HttpUtility.HtmlEncode(
+                //   displayName
+                //);
+
+                //// ✅ THÊM MỚI: Hiển thị Phone
+                //litPhone.Text = HttpUtility.HtmlEncode(
+                //    string.IsNullOrWhiteSpace(currentUser.PhoneNumBer)
+                //        ? "Chưa cập nhật"
+                //        : currentUser.PhoneNumBer
+                //);
+
+
+
                 litWelcomeName.Text = HttpUtility.HtmlEncode(currentUser.fullname);
                 litFullName.Text = HttpUtility.HtmlEncode(currentUser.fullname);
                 litEmail.Text = HttpUtility.HtmlEncode(currentUser.email);

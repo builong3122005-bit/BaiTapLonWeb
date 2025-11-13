@@ -140,7 +140,6 @@
                                 <thead>
                                     <tr>
                                         <th>ID</th>
-
                                         <th>Ảnh</th>
                                         <th>Tên sản phẩm</th>
                                         <th>Giá</th>
@@ -318,7 +317,11 @@
                                     <tr>
                                         <th>ID</th>
                                         <th>Họ tên</th>
+                                        <!-- ✅ MỚI -->
+                                        <!-- <th>Tên hiển thị </th> -->
                                         <th>Email</th>
+                                        <!-- ✅ MỚI -->
+                                        <!--  <th>Số Điện thoại</th> -->
                                         <th>Tổng đơn</th>
                                         <th>Thao tác</th>
                                     </tr>
@@ -414,10 +417,28 @@
                     <label>Họ tên *</label>
                     <asp:TextBox ID="txtCustomerName" runat="server" CssClass="form-control" required="required"></asp:TextBox>
                 </div>
+
+                <!-- ✅ MỚI: Tên hiển thị -->
+                <!-- <div class="form-group">
+                    <label>Tên hiển thị</label>
+                    <asp:TextBox ID="txtCustomerDisplayName" runat="server" CssClass="form-control"></asp:TextBox>
+                    <small style="color: #777; display: block; margin-top: 5px;">Để trống sẽ dùng họ tên</small>
+                </div> -->
+
                 <div class="form-group">
                     <label>Email *</label>
                     <asp:TextBox ID="txtCustomerEmail" runat="server" CssClass="form-control" TextMode="Email" required="required"></asp:TextBox>
                 </div>
+
+                <!-- ✅ MỚI: Số điện thoại -->
+                <!--   <div class="form-group">
+                    <label>Số điện thoại *</label>
+                    <asp:TextBox ID="txtCustomerPhone" runat="server" CssClass="form-control" TextMode="Phone" required="required"></asp:TextBox>
+                </div> 
+            </div>-->
+
+
+
                 <div class="form-group">
                     <label>Mật khẩu *</label>
                     <asp:TextBox ID="txtCustomerPassword" runat="server" CssClass="form-control" TextMode="Password"></asp:TextBox>

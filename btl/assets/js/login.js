@@ -8,6 +8,8 @@ const emailInput = $("#email");
 const passwordInput = $("#password");
 const globalError = $("#errorMessage");
 
+const phoneInput = $("#phoneNumber");
+
 // Tạo/tìm <span class="field-error"> trong .form-group
 function taoPhanTuLoi(input) {
     const nhom = input?.closest(".form-group");
@@ -62,8 +64,22 @@ function kiemTraMatKhau() {
     return true;
 }
 
+// ✅ Số điện thoại VN: 0 + 9 chữ số
+//const bieuThucPhone = /^0\d{9}$/;
+
+//function kiemTraSoDienThoai() {
+//    const giaTri = (phoneInput?.value || "").trim();
+//    if (!bieuThucPhone.test(giaTri)) {
+//        ganLoi(phoneInput, "Số điện thoại phải có 10 chữ số (VD: 0912345678)");
+//        return false;
+//    }
+//    xoaLoi(phoneInput);
+//    return true;
+//}
+
 // Realtime
 emailInput?.addEventListener("blur", kiemTraEmail);
+//phoneInput?.addEventListener("blur", kiemTraSoDienThoai);
 passwordInput?.addEventListener("input", kiemTraMatKhau);
 
 // Submit
@@ -71,9 +87,10 @@ form?.addEventListener("submit", (e) => {
     if (globalError) globalError.innerText = "";
 
     const okEmail = kiemTraEmail();
+    //const okPhone = kiemTraSoDienThoai();
     const okPass = kiemTraMatKhau();
 
-    if (!okEmail || !okPass) {
+    if (!okPhone || !okPass) {
         e.preventDefault();
         if (globalError) globalError.innerText = "Vui lòng kiểm tra lại các trường bị lỗi.";
         const dauTienLoi = form.querySelector(".invalid");

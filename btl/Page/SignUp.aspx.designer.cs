@@ -42,6 +42,15 @@ namespace btl.Page
         protected global::System.Web.UI.HtmlControls.HtmlInputText name;
 
         /// <summary>
+        /// displayName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText displayName;
+
+        /// <summary>
         /// email control.
         /// </summary>
         /// <remarks>
@@ -49,6 +58,15 @@ namespace btl.Page
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl email;
+
+        /// <summary>
+        /// phoneNumber control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl phoneNumber;
 
         /// <summary>
         /// password control.

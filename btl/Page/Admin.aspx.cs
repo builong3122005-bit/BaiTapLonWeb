@@ -127,16 +127,31 @@ namespace btl.Page
             customersTableBody.InnerHtml = GenerateUserHtml(users, orders);
         }
 
+
+        // ✅ CẬP NHẬT: Thêm 2 cột DisplayName và PhoneNumber
         private string GenerateUserHtml(List<User> users, List<Order> orders)
         {
             string html = "";
             foreach (var user in users)
             {
+                //string displayName = string.IsNullOrWhiteSpace(user.DisplayName)
+                //  ? user.fullname
+                //  : user.DisplayName;
+
+                //Hiển thị PhoneNumber(nếu không có thì hiển thị "Chưa cập nhật")
+                //string phoneNumber = string.IsNullOrWhiteSpace(user.PhoneNumBer)
+                //    ? "Chưa cập nhật"
+                //    : user.PhoneNumBer;
+
+
+
                 int orderCount = orders.Count(o => o.UserId == user.id); // Đếm tổng đơn
                 html += " <tr>" +
                         $"<td>{user.id}</td>" +
                         $"<td>{user.fullname}</td>" +
+                        //$"<td>{displayName}</td>" + // ✅ MỚI
                         $"<td>{user.email}</td>" +
+                        //$"<td>{phoneNumber}</td>" + // ✅ MỚI
                         $"<td>{orderCount}</td>" + // Hiển thị tổng đơn
                         "<td>" +
                         $"  <a href='Admin.aspx?action=edit_customer&id={user.id}' class='btn btn-small btn-warning'>Sửa</a>" +
@@ -146,6 +161,7 @@ namespace btl.Page
             return html;
         }
 
+        // ✅ CẬP NHẬT: Lưu 2 trường mới
         protected void btnSaveCustomer_Click(object sender, EventArgs e)
         {
             try
@@ -159,9 +175,19 @@ namespace btl.Page
                     {
                         id = users.Count > 0 ? users.Max(u => u.id) + 1 : 1,
                         fullname = txtCustomerName.Text,
+
+                        //DisplayName = string.IsNullOrWhiteSpace(txtCustomerDisplayName.Text)
+                        // ? txtCustomerName.Text
+                        //  : txtCustomerDisplayName.Text, // ✅ MỚI
+
+                        //PhoneNumBer = txtCustomerPhone.Text, // ✅ MỚI
+
                         email = txtCustomerEmail.Text,
                         password = txtCustomerPassword.Text, // (Lưu ý: nên mã hóa mật khẩu)
                         role = ddlCustomerRole.SelectedValue
+
+
+
                     };
                     users.Add(newUser);
                 }
@@ -172,6 +198,14 @@ namespace btl.Page
                     {
                         userToUpdate.fullname = txtCustomerName.Text;
                         userToUpdate.email = txtCustomerEmail.Text;
+
+                        //userToUpdate.DisplayName = string.IsNullOrWhiteSpace(txtCustomerDisplayName.Text)
+                        //? txtCustomerName.Text
+                        //: txtCustomerDisplayName.Text; // ✅ MỚI
+
+                        //userToUpdate.PhoneNumBer = txtCustomerPhone.Text; // ✅ MỚI
+
+
                         userToUpdate.role = ddlCustomerRole.SelectedValue;
                         if (!string.IsNullOrEmpty(txtCustomerPassword.Text))
                         {
@@ -191,6 +225,7 @@ namespace btl.Page
             }
         }
 
+        // ✅ CẬP NHẬT: Load 2 trường mới khi edit
         private void LoadCustomerForEdit(int id)
         {
             List<User> users = (List<User>)Application["users"];
@@ -199,6 +234,11 @@ namespace btl.Page
             {
                 hdnCustomerId.Value = userToEdit.id.ToString();
                 txtCustomerName.Text = userToEdit.fullname;
+
+                //txtCustomerDisplayName.Text = userToEdit.DisplayName; // ✅ MỚI
+                //txtCustomerPhone.Text = userToEdit.PhoneNumBer; // ✅ MỚI 
+
+
                 txtCustomerEmail.Text = userToEdit.email;
                 ddlCustomerRole.SelectedValue = userToEdit.role;
                 txtCustomerPassword.Text = ""; // Để trống mật khẩu
@@ -220,11 +260,15 @@ namespace btl.Page
                 Application["users"] = users;
             }
         }
-
+        // ✅ CẬP NHẬT: Clear 2 trường mới
         private void ClearCustomerForm()
         {
             hdnCustomerId.Value = "";
             txtCustomerName.Text = "";
+
+            //txtCustomerDisplayName.Text = ""; // ✅ MỚI
+            //txtCustomerPhone.Text = ""; // ✅ MỚI
+
             txtCustomerEmail.Text = "";
             txtCustomerPassword.Text = "";
             ddlCustomerRole.SelectedValue = "USER";
@@ -416,12 +460,12 @@ namespace btl.Page
             List<Product> products = (List<Product>)Application["products"] ?? new List<Product>();
             categoriesTableBody.InnerHtml = GenerateCategoryHtml(categories, products);
         }
-
         private string GenerateCategoryHtml(List<Category> categories, List<Product> products)
         {
             string html = "";
             foreach (var category in categories)
             {
+
                 int productCount = products.Count(p => p.CategoryId == category.Id);
                 html += "<tr>" +
                         $"<td>{category.Id}</td>" +

@@ -8,6 +8,12 @@
         public string phoneNumber { get; set; }
         public string role { get; set; }
         public string password { get; set; }
+
+        //Them display va phone
+        //public string DisplayName { get; set; }
+
+        //public string PhoneNumBer { get; set; }
+
         private static int nextId = 1;
 
         public User()
@@ -16,14 +22,19 @@
             nextId++;
         }
 
-        public User(string fullname, string email, string phoneNumber, string password, string role)
+        public User(string fullname, string email, /* string phonenumber*/ string password, string role /*string displayname*/)
         {
             this.fullname = fullname;
             this.email = email;
-            //this.phoneNumber = phoneNumber;
             this.password = password;
             this.id = nextId;
             this.role = role;
+
+
+            // them nay
+            //this.PhoneNumBer = phonenumber;
+            //this.DisplayName = displayname;
+
             nextId++;
         }
     }

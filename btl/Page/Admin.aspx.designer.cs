@@ -222,6 +222,15 @@ namespace btl.Page
         protected global::System.Web.UI.WebControls.TextBox txtCustomerName;
 
         /// <summary>
+        /// txtCustomerDisplayName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtCustomerDisplayName;
+
+        /// <summary>
         /// txtCustomerEmail control.
         /// </summary>
         /// <remarks>
@@ -229,6 +238,15 @@ namespace btl.Page
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtCustomerEmail;
+
+        /// <summary>
+        /// txtCustomerPhone control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtCustomerPhone;
 
         /// <summary>
         /// txtCustomerPassword control.

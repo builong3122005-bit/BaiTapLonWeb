@@ -11,6 +11,9 @@ const passwordInput = $("#password");
 const confirmInput = $("#confirm_password");
 const globalError = $("#errorMessage"); // label runat="server" (render thành <span>)
 
+const phoneInput = $("#phoneNumber"); // ✅ MỚI
+const displayNameInput = $("#displayName"); // ✅ MỚI
+
 // --- Helpers hiển thị lỗi ---
 
 // Tạo phần tử lỗi 
@@ -43,6 +46,31 @@ function xoaLoi(input) {
 
 // Biểu thức kiểm tra email cơ bản phía client
 const bieuThucEmail = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+const bieuThucPhone = /^(?:03|05|07|08|09)\d{8}$/;
+const bieuThucDisPlayName = /^[A-Za-zÀ-ỹ0-9 ]{2,30}$/;
+
+
+
+//// ✅ MỚI: Kiểm tra số điện thoại ,kiemTraDisPlayName
+function kiemTraSoDienThoai() {
+    const giaTri = (phoneInput?.value || "").trim();
+    if (!bieuThucPhone.test(giaTri)) {
+        ganLoi(phoneInput, "Số điện thoại phải có 10 chữ số");
+        return false;
+    }
+    xoaLoi(phoneInput);
+    return true;
+}
+function kiemTraDisPlayName() {
+    const giaTri = (displayNameInput?.value || "").trim();
+    if (!bieuThucDisPlayName.test(giaTri)) {
+        ganLoi(displayNameInput, "Tên hiển thị chỉ được dùng chữ, số và dấu cách, dài 2–30 ký tự.");
+        return false;
+    }
+    xoaLoi(displayNameInput);
+    return true;
+}
+
 
 // kiểm tra tên 
 function kiemTraHoTen() {
@@ -103,6 +131,12 @@ nameInput?.addEventListener("blur", kiemTraHoTen);
 // Khi rời ô email -> kiểm tra email
 emailInput?.addEventListener("blur", kiemTraEmail);
 
+phoneInput?.addEventListener("blur", kiemTraSoDienThoai); // ✅ MỚI
+displayNameInput?.addEventListener("blur", kiemTraDisPlayName); // Moi;
+
+
+
+
 // Khi gõ ở ô mật khẩu -> kiểm tra mật khẩu liên tục
 passwordInput.addEventListener("input", () => {
     kiemTraMatKhau();
@@ -122,8 +156,12 @@ form?.addEventListener("submit", (e) => {
     const hopLeMatKhau = kiemTraMatKhau();
     const hopLeXacNhan = kiemTraXacNhanMatKhau();
 
+
+    const hopLePhone = kiemTraSoDienThoai(); // ✅ MỚI
+    const hopLeDisplayName = kiemTraDisPlayName(); // ✅ MỚI
+
     // Tổng hợp kết quả
-    const tatCaHopLe = hopLeHoTen && hopLeEmail && hopLeMatKhau && hopLeXacNhan;
+    const tatCaHopLe = hopLeHoTen && hopLeEmail && hopLeMatKhau && hopLeXacNhan && hopLePhone && hopLeDisplayName;
 
     if (!tatCaHopLe) {
         e.preventDefault();

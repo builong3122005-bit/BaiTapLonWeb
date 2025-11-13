@@ -30,6 +30,13 @@
 
                 <asp:Label ID="errorMessage" runat="server" ForeColor="Red" />
 
+                <!-- ✅ THAY ĐỔI: Email → Số điện thoại -->
+                <!-- <div class="form-group">
+                    <label for="phoneNumber">Số điện thoại</label>
+                    <input type="tel" id="phoneNumber" runat="server" required placeholder="VD: 0912345678" />
+                    <span class="field-error"></span>
+                </div> -->
+
                 <div class="form-group">
                     <label for="email">Email</label>
                     <input type="email" id="email" runat="server" required />

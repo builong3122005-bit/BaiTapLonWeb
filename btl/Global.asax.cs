@@ -14,8 +14,8 @@ namespace btl
             // === KHỐI 1: TẠO USERS (Giữ nguyên) ===
             List<User> users = new List<User>
             {
-                new User { id = 1, fullname = "Admin User", email = "admin@gmail.com", password = "admin", role = "ADMIN" },
-                new User { id = 2, fullname = "Khách Hàng A", email = "khachhangA@gmail.com", password = "123", role = "USER" }
+                new User { id = 1, fullname = "Admin User",/* DisplayName = "Admin" */  email = "admin@gmail.com", password = "admin", role = "ADMIN" , /*PhoneNumBer = "0999999999"*/},
+                new User { id = 2, fullname = "Khách Hàng A",/*DisplayName = "Khách A"*/ email = "khachhangA@gmail.com", password = "123", role = "USER" ,/* PhoneNumBer = "0912345678"*/}
             };
             Application["users"] = users;
 

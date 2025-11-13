@@ -40,11 +40,27 @@
                     <span class="field-error"></span>
                 </div>
 
+                <!-- ✅ THÊM MỚI: Tên hiển thị -->
+                <!-- <div class="form-group">
+                    <label for="displayName">Tên hiển thị (tùy chọn)</label>
+                    <input type="text" id="displayName" runat="server" required placeholder="VD: John Doe" />
+                    <span class="field-error"></span>
+                </div> -->
+
                 <div class="form-group">
                     <label for="email">Email</label>
                     <input type="email" id="email" required runat="server" />
                     <span class="field-error"></span>
                 </div>
+
+                <!-- ✅ THÊM MỚI: Số điện thoại -->
+                <!-- <div class="form-group">
+                    <label for="phoneNumber">Số điện thoại </label>
+                    <input type="tel" id="phoneNumber" required runat="server" placeholder="VD: 0912345678" />
+                    <span class="field-error"></span>
+                </div> -->
+
+
 
                 <div class="form-group">
                     <label for="password">Mật khẩu</label>

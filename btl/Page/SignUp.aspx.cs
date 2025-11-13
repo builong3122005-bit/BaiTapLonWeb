@@ -15,6 +15,11 @@ namespace btl.Page
                 string ConfirmPassword = confirm_password.Value;
                 string Email = email.Value;
 
+                // ✅ LẤY GIÁ TRỊ MỚI
+                //string PhoneNum = phoneNumber.Value?.Trim();
+                //string DisplayNameValue = displayName.Value?.Trim();
+
+
                 // Kiểm tra mật khẩu khớp
                 if (!Password.Equals(ConfirmPassword))
                 {
@@ -30,14 +35,29 @@ namespace btl.Page
                     return;
                 }
 
-                errorMessage.InnerHtml = "";
+                //// ✅ KIỂM TRA SỐ ĐIỆN THOẠI ĐÃ TỒN TẠI
+                //if (!string.IsNullOrWhiteSpace(PhoneNum) &&
+                //    users.Any(u => !string.IsNullOrWhiteSpace(u.PhoneNumBer) &&
+                //                   u.PhoneNumBer.Equals(PhoneNum, StringComparison.OrdinalIgnoreCase)))
+                //{
+                //    errorMessage.InnerHtml = "Số điện thoại này đã được đăng ký. Vui lòng sử dụng số khác.";
+                //    return;
+                //}
 
-                User user = new User();
-                user.fullname = name.Value;
-                user.email = Email;
-                user.password = Password;
-                user.phoneNumber = "";
-                user.role = "USER";
+
+                errorMessage.InnerHtml = "";
+                // ✅ TẠO USER MỚI VỚI ĐẦY ĐỦ THÔNG TIN
+                User user = new User
+                {
+                    fullname = name.Value,
+                    // display va phone
+                    //DisplayName = string.IsNullOrWhiteSpace(DisplayNameValue) ? name.Value : DisplayNameValue,
+                    email = Email,
+                    //PhoneNumBer = PhoneNum,
+                    password = Password,
+
+                    role = "USER"
+                };
 
                 users.Add(user);
                 Application["users"] = users;
